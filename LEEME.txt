@@ -1,0 +1,8 @@
+PORTFOLIO WEB · ALBERTO JERÓNIMO ANDRADES
+
+Cómo abrirlo:
+1. Descomprime el ZIP entero (no lo abras desde dentro del ZIP).
+2. Abre index.html con Chrome, Edge o Firefox (doble clic).
+
+Todo funciona sin internet: imágenes, vídeos, demo reel y modelos 3D interactivos.
+No separes index.html de las carpetas img, media y models.

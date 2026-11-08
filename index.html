@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alberto Jerónimo Andrades</title>
+<meta name="description" content="Portfolio de Alberto Jerónimo Andrades, artista 3D generalista: modelado, texturizado, animación, cine y videojuegos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>:root{
+  /* Línea A "Celda": grafito frío como base (70 %), tinta clara (30 %), rojo láser como único acento. */
+  --bg:#0b0c10;
+  --surface:#14151b;
+  --line:#24262e;
+  --ink:#eceae4;
+  --muted:#8b8d97;
+  --accent:#ff3d4a;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  /* Regla 7:3 → 7 partes de imagen, 3 de texto */
+  --seven:7fr; --three:3fr;
+  --gutter:clamp(16px,4vw,64px);
+  --gap:clamp(12px,1.5vw,22px);
+  --section:clamp(80px,10vw,160px);
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--body);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img,video{display:block;max-width:100%;height:auto}
+a{color:inherit}
+ul,ol{list-style:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+::selection{background:var(--accent);color:#120405}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;font-stretch:118%;letter-spacing:-.01em;font-weight:800}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.skip{position:absolute;left:-999px;top:8px;z-index:99;background:var(--accent);color:#120405;padding:8px 12px}
+.skip:focus{left:8px}
+
+/* ---------- barra ---------- */
+.bar{position:sticky;top:0;z-index:30;display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:clamp(14px,3vw,40px);
+  padding:13px var(--gutter);background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.sig{font:800 14px/1 var(--display);font-stretch:125%;letter-spacing:.03em;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.sig i{width:9px;height:9px;background:var(--accent);flex:none}
+.bar nav{display:flex;gap:clamp(14px,2.4vw,32px)}
+.bar nav a{font:500 12px/1 var(--mono);letter-spacing:.07em;text-transform:uppercase;text-decoration:none;color:var(--muted);transition:color .2s}
+.bar nav a:hover,.bar nav a.on{color:var(--ink)}
+.lang{display:flex;border:1px solid var(--line)}
+.lang button{background:none;border:0;color:var(--muted);font:500 11.5px/1 var(--mono);letter-spacing:.06em;padding:8px 10px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+
+/* ---------- 01 portada (7:3) ---------- */
+.hero{display:grid;grid-template-columns:var(--seven) var(--three);gap:var(--gap);padding:var(--gap) var(--gutter) 0}
+.hero-media{position:relative;overflow:hidden;background:#000}
+.hero-media img{width:100%;aspect-ratio:16/9;object-fit:cover;animation:settle 2.4s cubic-bezier(.2,.7,.2,1) both}
+@keyframes settle{from{transform:scale(1.06);filter:brightness(.4)}to{transform:none;filter:none}}
+.hero-media::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(90deg,transparent 0 calc(10% - 1px),color-mix(in srgb,var(--accent) 60%,transparent) calc(10% - 1px) 10%);
+  mix-blend-mode:screen;opacity:.28;animation:scan 1.8s .3s cubic-bezier(.2,.7,.2,1) both}
+@keyframes scan{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.hero-media .tag{position:absolute;left:14px;bottom:12px;z-index:2;color:#d6d6dc;text-shadow:0 1px 8px #000}
+.hero-text{display:flex;flex-direction:column;justify-content:space-between;gap:28px;padding:4px 0}
+.ht-top{display:grid;gap:18px}
+.hero h1{font-weight:900;font-size:clamp(34px,4.4vw,76px);line-height:.9;text-transform:uppercase;font-stretch:125%}
+.hero h1 span{display:block}
+.hero h1 span:last-child{color:var(--accent)}
+.role{font:700 clamp(15px,1.15vw,18px)/1.2 var(--display);font-stretch:112%;text-transform:uppercase;letter-spacing:.04em}
+.line{color:#c6c6cc;max-width:36ch}
+.ht-bot{display:grid;gap:18px}
+.facts-mini{display:grid;gap:6px;border-top:1px solid var(--line);padding-top:14px}
+.btns,.cbtns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{font:500 12.5px/1 var(--mono);letter-spacing:.07em;text-transform:uppercase;text-decoration:none;padding:13px 16px;border:1px solid var(--line);display:inline-flex;gap:8px;align-items:center;transition:border-color .2s,background .2s,color .2s;background:none;color:inherit;cursor:pointer}
+.btn:hover{border-color:var(--ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#120405}
+.btn.primary:hover{background:#ff5b66;border-color:#ff5b66}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);margin:var(--gap) var(--gutter) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.facts li{padding:18px 0 16px;display:grid;gap:4px;border-right:1px solid var(--line);padding-left:18px}
+.facts li:first-child{padding-left:0}
+.facts li:last-child{border-right:0}
+.facts b{font:900 clamp(26px,2.6vw,42px)/1 var(--display);font-stretch:125%}
+.facts span{font:500 12px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- cabeceras de sección ---------- */
+.block{padding:var(--section) var(--gutter) 0}
+.sh{display:grid;grid-template-columns:var(--three) var(--seven);gap:var(--gap);align-items:start;border-top:1px solid var(--ink);padding-top:16px;margin-bottom:clamp(28px,4vw,56px)}
+.sh .mono{color:var(--accent);font-size:13px;padding-top:6px}
+.sh h2{font-weight:900;font-size:clamp(34px,5.4vw,92px);line-height:.88;text-transform:uppercase;font-stretch:125%}
+
+/* ---------- 02 sobre mí ---------- */
+.about-grid{display:grid;grid-template-columns:var(--three) var(--seven);gap:var(--gap)}
+.about-img figure{background:#77777a}
+.about-img img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:28% center}
+.about-text{display:grid;gap:18px;align-content:start}
+.lead{font:500 clamp(20px,2vw,32px)/1.3 var(--body);max-width:34ch;letter-spacing:-.005em}
+.about-text>.mono{margin-top:12px;color:var(--accent)}
+.how{color:#c6c6cc;max-width:62ch}
+.strengths{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);margin-top:20px}
+.strengths li{border-top:1px solid var(--line);padding-top:14px;display:grid;gap:8px;align-content:start}
+.strengths h3{font-size:17px;line-height:1.15}
+.strengths p{color:var(--muted);font-size:14.5px}
+
+/* ---------- 03 habilidades ---------- */
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
+.skills-grid>div{border-top:1px solid var(--line);padding-top:14px}
+.skills-grid h3{margin-bottom:14px;font-family:var(--mono);font-stretch:100%}
+.skills-grid li{font-size:15.5px;padding:7px 0;border-bottom:1px solid color-mix(in srgb,var(--line) 60%,transparent)}
+.skills-grid ul.tools{display:flex;flex-wrap:wrap;gap:6px}
+.skills-grid ul.tools li{font:500 12.5px/1 var(--mono);padding:8px 9px;border:1px solid var(--line)}
+
+/* ---------- 04 índice ---------- */
+.index{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:10px}
+.index a{display:block;text-decoration:none}
+.index img{aspect-ratio:4/3;object-fit:cover;width:100%;filter:grayscale(.7) brightness(.75);transition:filter .35s}
+.index a:hover img,.index a:focus-visible img{filter:none}
+.index .n{display:grid;gap:2px;margin-top:8px;font-size:11px;line-height:1.3;text-transform:none;letter-spacing:.02em}
+.index .n b{color:var(--accent);font-weight:500}
+
+/* ---------- categorías y proyectos (7:3) ---------- */
+.cat{padding:var(--section) var(--gutter) 0}
+.cathead{display:flex;align-items:baseline;gap:18px;border-bottom:1px solid var(--line);padding-bottom:14px}
+.cathead .mono{color:var(--accent)}
+.cathead h2{font-size:clamp(20px,1.8vw,28px);text-transform:uppercase;font-stretch:125%;font-weight:800}
+.work{padding-top:clamp(36px,5vw,72px);display:grid;grid-template-columns:var(--seven) var(--three);gap:var(--gap);align-items:start}
+.work.flip{grid-template-columns:var(--three) var(--seven)}
+.work.flip .media{order:2}
+.media{display:grid;gap:var(--gap)}
+.g{display:grid;gap:var(--gap)}
+.g1{grid-template-columns:1fr}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+figure{position:relative;background:var(--surface);overflow:hidden;margin:0}
+figure img{width:100%;cursor:zoom-in;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+figure:hover img{transform:scale(1.018)}
+figure.fit img{aspect-ratio:16/9;object-fit:cover}
+figcaption{position:absolute;left:10px;bottom:8px;font:500 10.5px/1.2 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:#ececf0;background:rgba(8,8,10,.74);padding:5px 7px;pointer-events:none}
+.text{position:sticky;top:84px;display:grid;gap:16px;padding-top:2px}
+.numrow{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.num{font:900 clamp(46px,5vw,88px)/.82 var(--display);font-stretch:125%;color:transparent;-webkit-text-stroke:1px var(--muted)}
+.star{color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 50%,transparent);padding:5px 7px;font-size:10.5px}
+.kind{color:var(--accent);font:500 11.5px/1.4 var(--mono);letter-spacing:.07em;text-transform:uppercase}
+.text h3{font-size:clamp(24px,2.3vw,38px);line-height:1.02}
+.text p{color:#c9c9cf;max-width:46ch;font-size:15.5px}
+.meta{display:grid;grid-template-columns:1fr;gap:2px;border-top:1px solid var(--line);padding-top:12px;font-size:14px}
+.meta dt{font:500 10.5px/1.9 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.meta dt:first-child{margin-top:0}
+.meta dd{color:var(--ink);line-height:1.45}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips li{font:500 11px/1 var(--mono);letter-spacing:.04em;padding:7px 8px;border:1px solid var(--line);color:var(--muted)}
+.link{font:500 12.5px/1 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:4px;justify-self:start}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.steps figure{counter-increment:s}
+.steps figure img{aspect-ratio:16/10;object-fit:cover}
+.steps figcaption::before{content:"0" counter(s) "\00a0\00a0";color:var(--accent)}
+.play{background:#000}
+.play video{width:100%;aspect-ratio:16/9;object-fit:contain;background:#000}
+
+/* ---------- 05 otros trabajos ---------- */
+.others{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);align-items:start}
+.others li{display:grid;gap:10px}
+.others li.tall{grid-row:span 2}
+.others li:not(.tall) figure img{aspect-ratio:4/3;object-fit:cover}
+.others li:not(.tall) .play video{aspect-ratio:4/3;object-fit:cover}
+.ot h3{font-size:16px;line-height:1.2}
+.ot p{color:var(--muted);font-size:14px;margin-top:3px}
+
+/* ---------- 06 formación ---------- */
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px)}
+.edu-grid>div>.mono{display:block;color:var(--accent);margin:0 0 6px}
+.edu-grid>div>.mono:not(:first-child){margin-top:36px}
+.tl li{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:16px 0;border-top:1px solid var(--line)}
+.tl h3{font-size:18px;line-height:1.2}
+.tl p{color:var(--muted);font-size:14.5px;margin-top:3px;max-width:56ch}
+
+/* ---------- 07 contacto ---------- */
+.contact{margin-top:var(--section);padding:clamp(48px,7vw,110px) var(--gutter);background:var(--accent);color:#140406;display:grid;grid-template-columns:minmax(0,7fr) minmax(280px,3fr);gap:var(--gap);align-items:end}
+.contact .mono{color:#4a0f15}
+.contact h2{font-weight:900;font-size:clamp(30px,6.3vw,112px);line-height:.84;text-transform:uppercase;font-stretch:125%;margin-top:14px}
+.contact .stack{display:grid;gap:16px}
+.contact p{font-size:16px;max-width:36ch}
+.mail{font:700 clamp(17px,1.5vw,23px)/1.25 var(--display);font-stretch:105%;text-decoration:none;border-bottom:2px solid currentColor;padding-bottom:4px;overflow-wrap:anywhere;justify-self:start}
+.btn.dark{background:#140406;color:var(--accent);border-color:#140406}
+.btn.dark:hover{background:#2a0a0e}
+.btn.ghost{border-color:#140406}
+.btn.ghost:hover{background:rgba(20,4,6,.08)}
+footer{padding:20px var(--gutter);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* ---------- visor ---------- */
+.lb{position:fixed;inset:0;z-index:60;background:rgba(5,5,7,.96);display:none;align-items:center;justify-content:center;padding:clamp(12px,5vw,72px)}
+.lb.on{display:flex}
+.lb img{max-height:84vh;width:auto;max-width:100%}
+.lb .cap{position:absolute;left:var(--gutter);bottom:20px;color:var(--ink)}
+.lb .cnt{position:absolute;right:var(--gutter);bottom:20px}
+.lb button{position:absolute;background:var(--bg);border:1px solid var(--line);color:var(--ink);font:500 14px/1 var(--mono);padding:12px 15px;cursor:pointer}
+.lb button:hover{border-color:var(--ink)}
+.lb .x{top:16px;right:16px}.lb .prev{left:16px;top:50%}.lb .next{right:16px;top:50%}
+
+
+/* ---------- par render + modelo 3D ---------- */
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+.pair>figure img{aspect-ratio:4/3;object-fit:cover;height:100%}
+.viewer{position:relative;background:radial-gradient(120% 90% at 50% 40%,#1c1d25 0%,#101116 70%);aspect-ratio:4/3;overflow:hidden;border:1px solid var(--line)}
+.v-stage{position:absolute;inset:0}
+.v-stage canvas{display:block;width:100%!important;height:100%!important;cursor:grab;touch-action:none}
+.v-stage canvas:active{cursor:grabbing}
+.v-poster{position:absolute;inset:0;display:grid;place-items:center;transition:opacity .5s}
+.v-poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.v-poster.gone{opacity:0;pointer-events:none}
+.v-load{position:relative;z-index:2;font:500 12px/1 var(--mono);letter-spacing:.07em;text-transform:uppercase;background:var(--accent);color:#120405;border:0;padding:11px 14px;cursor:pointer}
+.v-badge{position:absolute;left:10px;top:10px;z-index:3;font-size:10.5px;color:#ececf0;background:rgba(8,8,10,.74);padding:5px 7px}
+.v-bar{position:absolute;left:10px;right:10px;bottom:10px;z-index:3;display:flex;justify-content:space-between;align-items:center;gap:8px;pointer-events:none}
+.v-bar .mono{font-size:10.5px;color:#ececf0;background:rgba(8,8,10,.74);padding:5px 7px}
+.v-bar b{color:var(--accent);font-weight:500}
+.v-modes{display:flex;pointer-events:auto}
+.v-modes button{background:rgba(8,8,10,.8);border:1px solid var(--line);color:var(--muted);font:500 10.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:7px 9px;cursor:pointer}
+.v-modes button[aria-pressed="true"]{color:var(--ink);border-color:var(--ink)}
+.v-hint{position:absolute;right:10px;top:10px;z-index:3;font-size:10px;opacity:0;transition:opacity .4s}
+.viewer.ready:hover .v-hint{opacity:1}
+.gallery{display:grid;gap:var(--gap)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px}
+.tabs button{background:none;border:1px solid var(--line);color:var(--muted);font:500 12px/1 var(--mono);letter-spacing:.05em;padding:10px 12px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.panel{display:grid;gap:var(--gap)}
+.panel[hidden]{display:none}
+figure.loop video{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+@media (max-width:520px){ .pair{grid-template-columns:1fr} }
+
+/* ---------- responsive ---------- */
+@media (max-width:1200px){
+  .index{grid-template-columns:repeat(5,1fr)}
+  .strengths,.skills-grid{grid-template-columns:1fr 1fr}
+  .others{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:900px){
+  .hero,.work,.work.flip,.about-grid,.contact,.sh,.edu-grid{grid-template-columns:1fr}
+  .work.flip .media{order:0}
+  .text{position:static;order:-1}
+  .about-img img{aspect-ratio:16/10;object-position:center}
+  .bar nav{display:none}
+  .facts{grid-template-columns:1fr 1fr}
+  .facts li{border-right:0;padding-left:0;border-bottom:1px solid var(--line)}
+  .facts li:nth-last-child(-n+2){border-bottom:0}
+  .steps{grid-template-columns:repeat(3,1fr)}
+  .others{grid-template-columns:1fr 1fr}
+  .index{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:520px){
+  .g3,.g4{grid-template-columns:1fr 1fr}
+  .g3>:first-child,.steps>:last-child{grid-column:1/-1}
+  .steps{grid-template-columns:1fr 1fr}
+  .strengths,.skills-grid,.others{grid-template-columns:1fr}
+  .others li.tall{grid-row:auto}
+  .hero-media .tag{display:none}
+  .sig{white-space:normal;font-size:12px;line-height:1.15}
+  .tl li{grid-template-columns:1fr;gap:4px}
+  .contact h2{font-size:10vw}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+
+/* ================= Estructura multipágina ================= */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.acc{color:var(--accent)!important}
+.bar{grid-template-columns:auto auto 1fr auto auto;gap:clamp(10px,2vw,28px)}
+.mainnav{justify-self:center;display:flex;gap:2px!important;border:1px solid var(--line);padding:3px}
+.mainnav a{padding:9px 14px;font:500 12px/1 var(--mono)!important;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;color:var(--muted)}
+.mainnav a:hover{color:var(--ink)}
+.mainnav a.on{background:var(--accent);color:#120405!important}
+.search{position:relative}
+.search input{width:clamp(140px,14vw,220px);background:var(--surface);border:1px solid var(--line);color:var(--ink);font:500 12.5px/1 var(--mono);padding:10px 12px 10px 32px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238b8d97' stroke-width='2.4'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:11px center}
+.search input:focus{outline:2px solid var(--accent);outline-offset:0;border-color:transparent}
+.results{position:absolute;right:0;top:calc(100% + 6px);width:min(360px,86vw);background:var(--surface);border:1px solid var(--line);z-index:40;max-height:60vh;overflow:auto}
+.results a{display:grid;grid-template-columns:64px 1fr;gap:10px;align-items:center;padding:8px;text-decoration:none;border-bottom:1px solid var(--line)}
+.results a:hover,.results a.sel{background:#1c1d25}
+.results img{width:64px;aspect-ratio:16/10;object-fit:cover}
+.results b{display:block;font:700 14px/1.2 var(--display);font-stretch:110%}
+.results span{font:500 10.5px/1.3 var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.results .none{padding:14px;color:var(--muted);font-size:14px}
+.menu{display:none;background:none;border:1px solid var(--line);color:var(--ink);font-size:18px;padding:6px 11px;cursor:pointer}
+.mnav{position:sticky;top:57px;z-index:29;background:var(--bg);border-bottom:1px solid var(--line);display:grid}
+.mnav[hidden]{display:none}
+.mnav a{padding:14px var(--gutter);text-decoration:none;font:700 18px/1 var(--display);font-stretch:118%;text-transform:uppercase;border-top:1px solid var(--line)}
+
+.view{padding:var(--gap) var(--gutter) 0;min-height:70vh;animation:vin .45s cubic-bezier(.2,.7,.2,1) both}
+.view[hidden]{display:none}
+@keyframes vin{from{opacity:.001;transform:translateY(8px)}to{opacity:1;transform:none}}
+.view .hero{padding:0}
+.view .facts{margin:var(--gap) 0 0}
+.crumbs{margin:6px 0 clamp(18px,2.4vw,30px)}
+.crumbs a{text-decoration:none;color:var(--ink)}
+.crumbs a:hover{color:var(--accent)}
+
+/* cabecera de vista 3:7 */
+.vh{display:grid;grid-template-columns:var(--three) var(--seven);gap:var(--gap);border-top:1px solid var(--ink);padding-top:16px;margin:clamp(20px,3vw,40px) 0 clamp(26px,3.5vw,48px)}
+.vh>div:first-child{display:grid;gap:10px;align-content:start}
+.vh h1{font-weight:900;font-size:clamp(34px,5vw,86px);line-height:.88;text-transform:uppercase;font-stretch:125%}
+.vh>div:last-child{display:grid;gap:12px;align-content:end;justify-items:start}
+.lead-s{font:500 clamp(17px,1.5vw,22px)/1.4 var(--body);max-width:52ch;color:#d4d3cf}
+.vh .role{margin:0}
+
+/* puertas de inicio (como las tarjetas de tu Wix) */
+.doors{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:clamp(40px,5vw,72px)}
+.door{position:relative;display:grid;grid-template-rows:auto 1fr;text-decoration:none;border:1px solid var(--line);background:var(--surface);overflow:hidden;transition:border-color .25s}
+.door:hover{border-color:var(--ink)}
+.d-img{display:block;aspect-ratio:16/9;overflow:hidden;background:#000}
+.d-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(.5) brightness(.75);transition:filter .4s,transform .6s cubic-bezier(.2,.7,.2,1)}
+.door:hover .d-img img{filter:none;transform:scale(1.03)}
+.d-txt{display:grid;gap:6px;padding:16px 16px 18px}
+.d-title{font:900 clamp(22px,2.1vw,34px)/1 var(--display);font-stretch:125%;text-transform:uppercase}
+.d-sub{color:var(--muted);font-size:14.5px}
+.d-go{margin-top:8px;color:var(--ink)}
+.door.red{background:var(--accent);border-color:var(--accent);color:#140406}
+.door.red .d-img{background:
+  repeating-linear-gradient(90deg,transparent 0 calc(12.5% - 1px),rgba(20,4,6,.35) calc(12.5% - 1px) 12.5%),var(--accent);position:relative}
+.door.red .d-img::after{content:"@";position:absolute;inset:0;display:grid;place-items:center;font:900 clamp(60px,7vw,120px)/1 var(--display);color:#140406}
+.door.red .d-sub,.door.red .mono,.door.red .d-go{color:#3a0d11}
+
+/* destacados 7:3 */
+.featured{margin-top:clamp(56px,7vw,110px)}
+.fh{display:flex;align-items:baseline;gap:14px;border-top:1px solid var(--line);padding-top:14px;margin-bottom:var(--gap)}
+.fh h2{font-size:clamp(20px,1.8vw,28px);text-transform:uppercase;font-stretch:125%}
+.fh .link{margin-left:auto}
+.fgrid{display:grid;grid-template-columns:var(--seven) var(--three);grid-template-rows:1fr 1fr;gap:var(--gap)}
+.fgrid .pcard.big{grid-row:span 2}
+.fgrid .pcard.big .pc-img{aspect-ratio:auto;flex:1;min-height:320px}
+.fgrid .pcard.big .pc-title{font-size:clamp(26px,2.6vw,42px)}
+
+/* tarjetas de proyecto */
+.pcard{display:flex;flex-direction:column;text-decoration:none;background:var(--surface);border:1px solid var(--line);transition:border-color .25s}
+.pcard:hover{border-color:var(--ink)}
+.pc-img{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;background:#000}
+.pc-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.pcard:hover .pc-img img{transform:scale(1.035)}
+.flag{position:absolute;right:10px;top:10px;background:rgba(8,8,10,.8);color:#ececf0;padding:5px 7px;font-size:10.5px}
+.flag.star{right:auto;left:10px;color:var(--accent)}
+.pc-txt{display:grid;gap:5px;padding:14px 14px 16px}
+.pc-cat{color:var(--accent)}
+.pc-title{font:800 clamp(19px,1.6vw,24px)/1.08 var(--display);font-stretch:118%}
+.pc-kind{color:#c6c6cc;font-size:14px}
+.pc-tools{margin-top:4px}
+
+/* categorías */
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+.ccard{display:grid;grid-template-rows:auto 1fr;text-decoration:none;border:1px solid var(--line);background:var(--surface);transition:border-color .25s}
+.ccard:hover{border-color:var(--ink)}
+.cc-img{display:block;aspect-ratio:16/10;overflow:hidden;background:#000}
+.cc-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(.35) brightness(.85);transition:filter .4s,transform .6s cubic-bezier(.2,.7,.2,1)}
+.ccard:hover .cc-img img{filter:none;transform:scale(1.03)}
+.cc-txt{display:grid;gap:8px;padding:16px 16px 14px;align-content:start}
+.cc-title{font:900 clamp(22px,2vw,32px)/1 var(--display);font-stretch:125%;text-transform:uppercase}
+.cc-desc{color:var(--muted);font-size:14.5px}
+.cc-foot{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:10px;margin-top:6px}
+.cc-go{color:var(--ink)}
+.ccard:hover .cc-go{color:var(--accent)}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+.back{display:inline-block;margin-top:clamp(28px,4vw,48px);color:var(--ink);text-decoration:none}
+.back:hover{color:var(--accent)}
+
+/* página de proyecto */
+.view .work{padding-top:0}
+.text h1{font-size:clamp(28px,2.8vw,46px);line-height:1;font-weight:800}
+.pnav{display:grid;grid-template-columns:1fr auto 1fr;gap:var(--gap);margin-top:clamp(40px,5vw,72px);border-top:1px solid var(--line);padding-top:16px}
+.pnav a{display:grid;gap:6px;text-decoration:none;font:800 clamp(16px,1.4vw,21px)/1.15 var(--display);font-stretch:112%}
+.pnav a:hover{color:var(--accent)}
+.pnav .mid{text-align:center;border:1px solid var(--line);padding:12px 18px;align-content:center}
+.pnav .r{text-align:right}
+
+/* sobre mí */
+.sub{margin-top:clamp(56px,7vw,100px)}
+.subh{display:flex;gap:14px;align-items:baseline;border-top:1px solid var(--line);padding-top:14px;margin-bottom:clamp(20px,3vw,36px)}
+.subh h2{font-size:clamp(20px,1.8vw,28px);text-transform:uppercase;font-stretch:125%}
+.edu-grid h3.mono{display:block;margin:0 0 6px}
+.edu-grid .tl+h3.mono{margin-top:36px}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:clamp(40px,5vw,72px)}
+
+/* contacto */
+.contact-view{padding-top:var(--gap)}
+.contact-view .contact{margin-top:0}
+.contact h1{font-weight:900;font-size:clamp(34px,5.4vw,96px);line-height:.84;text-transform:uppercase;font-stretch:125%;margin-top:14px}
+.cinfo{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);margin-top:var(--gap)}
+.cinfo>div{border:1px solid var(--line);background:var(--surface);padding:16px;display:grid;gap:8px;align-content:start}
+.cinfo p{font-size:15.5px}
+.cinfo a{color:var(--accent)}
+footer{margin-top:clamp(60px,8vw,120px);border-top:1px solid var(--line)}
+
+@media (max-width:1200px){
+  .cgrid,.pgrid{grid-template-columns:1fr 1fr}
+  .cinfo{grid-template-columns:1fr 1fr}
+}
+@media (max-width:1000px){
+  .mainnav,.search{display:none}
+  .menu{display:block}
+  .bar{grid-template-columns:1fr auto auto}
+}
+@media (max-width:900px){
+  .vh,.fgrid{grid-template-columns:1fr}
+  .fgrid{grid-template-rows:auto}
+  .fgrid .pcard.big{grid-row:auto}
+  .fgrid .pcard.big .pc-img{aspect-ratio:16/10;min-height:0}
+  .doors{grid-template-columns:1fr}
+  .door{grid-template-columns:40% 1fr;grid-template-rows:auto}
+  .d-img{aspect-ratio:auto;height:100%}
+  .pnav{grid-template-columns:1fr 1fr}
+  .pnav .mid{grid-column:1/-1;order:-1}
+}
+@media (max-width:520px){
+  .cgrid,.pgrid,.cinfo{grid-template-columns:1fr}
+  .door{grid-template-columns:1fr}
+  .d-img{aspect-ratio:16/9}
+  .door.red .d-img{display:none}
+}
+
+@media (max-width:900px){ .contact{grid-template-columns:minmax(0,1fr)!important} }
+@media (max-width:520px){ .contact h1{font-size:9vw} }
+
+/* ================= Versión 3 · estructura del Wix ================= */
+/* Inicio: bienvenida con el modelo 3D (en lugar del logo) + texto grande */
+.welcome{display:grid;grid-template-columns:var(--three) var(--seven);gap:clamp(18px,3vw,48px);align-items:center;padding:clamp(20px,4vw,64px) 0 0}
+.w-model{position:relative}
+.hero-viewer{aspect-ratio:3/4;border:1px solid var(--line)}
+.hero-viewer .v-poster img{object-fit:cover}
+.hero-viewer::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(90deg,transparent 0 calc(12.5% - 1px),color-mix(in srgb,var(--accent) 45%,transparent) calc(12.5% - 1px) 12.5%);opacity:.18;mix-blend-mode:screen}
+.hero-viewer .v-hint{opacity:.85;left:10px;right:auto;top:auto;bottom:10px}
+.w-text{display:grid;gap:20px;align-content:center}
+.wtitle{display:grid;gap:10px}
+.wt-small{font:800 clamp(20px,2.2vw,34px)/1.05 var(--display);font-stretch:118%;color:var(--muted);text-transform:none}
+.wt-name{font:900 clamp(40px,6.4vw,112px)/.88 var(--display);font-stretch:125%;text-transform:uppercase}
+.wt-name em{font-style:normal;color:var(--accent)}
+.w-sub{font-size:clamp(16px,1.3vw,19px);color:#cfcfd4;max-width:56ch}
+.w-facts{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line);margin-top:6px}
+.w-facts li{display:grid;gap:2px;padding:14px 26px 0 0;margin-right:26px;border-right:1px solid var(--line)}
+.w-facts li:last-child{border-right:0}
+.w-facts b{font:900 clamp(22px,2.2vw,34px)/1 var(--display);font-stretch:125%}
+.w-facts span{font:500 11px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.view .doors{margin-top:clamp(36px,5vw,72px)}
+
+/* Proyectos: tarjetas de 2 en 2 + "¿Trabajamos juntos?" */
+.cgrid.two{grid-template-columns:1fr 1fr}
+.cgrid.two .cc-img{aspect-ratio:16/8}
+.together{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:var(--gap);border:1px solid var(--accent);padding:clamp(18px,2.4vw,30px);background:color-mix(in srgb,var(--accent) 7%,var(--bg))}
+.together h2{font-size:clamp(22px,2.2vw,34px);text-transform:uppercase;font-stretch:125%}
+.together p{color:#cfcfd4;margin-top:4px}
+
+/* Categoría: lista de trabajos en la misma página */
+.jump{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:clamp(10px,2vw,20px)}
+.jump .mono{margin-right:6px}
+.jump a{font:500 12px/1 var(--mono);letter-spacing:.04em;text-decoration:none;border:1px solid var(--line);padding:9px 11px;color:var(--ink)}
+.jump a:hover{border-color:var(--accent);color:var(--accent)}
+.witem{padding-top:clamp(40px,5vw,72px);scroll-margin-top:74px}
+.wh{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:end;border-top:1px solid var(--line);padding-top:16px;margin-bottom:var(--gap)}
+.wnum{font:900 clamp(40px,4.4vw,72px)/.8 var(--display);font-stretch:125%;color:transparent;-webkit-text-stroke:1px var(--muted)}
+.wh>div{display:grid;gap:6px}
+.wh h2{font-size:clamp(26px,2.8vw,44px);line-height:1}
+.flag-in{border:1px solid var(--line);padding:6px 8px;color:var(--ink)}
+.witem .work{padding-top:0}
+.witem .text{top:90px}
+
+/* Sobre mí */
+.asec{margin-top:clamp(40px,5vw,80px)}
+.asec:first-of-type{margin-top:0}
+.bio{display:grid;grid-template-columns:minmax(160px,var(--three)) var(--seven);gap:clamp(18px,3vw,44px);align-items:start}
+.avatar{aspect-ratio:1;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;position:relative;overflow:hidden}
+.avatar::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 calc(12.5% - 1px),rgba(255,61,74,.5) calc(12.5% - 1px) 12.5%);opacity:.35}
+.avatar span{position:relative;font:900 clamp(56px,7vw,120px)/1 var(--display);font-stretch:125%;color:var(--ink)}
+.bio-txt{display:grid;gap:16px}
+.bio-data{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;border-bottom:1px solid var(--line);padding-bottom:14px;font-size:15px}
+.bio-data dt{font:500 11px/1.9 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.bio .lead{max-width:44ch}
+.asec .strengths{margin-top:clamp(22px,3vw,40px)}
+.cvbox{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;border:1px solid var(--line);background:var(--surface);padding:clamp(16px,2vw,26px)}
+.cvbox p{color:#cfcfd4}
+.skillchips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(22px,3vw,36px)}
+.skillchips li{font:500 14px/1 var(--mono);padding:12px 16px;border:1px solid var(--accent);color:var(--ink)}
+.skillchips.small li{font-size:11.5px;padding:7px 9px;border-color:var(--line)}
+.skills-grid.three{grid-template-columns:repeat(3,1fr)}
+.goals{counter-reset:g;display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gap);border:1px solid var(--accent);padding:clamp(18px,2.6vw,34px)}
+.goals li{counter-increment:g;display:grid;grid-template-columns:auto 1fr;gap:14px;font-size:16px;color:#d8d7d3}
+.goals li::before{content:"0" counter(g);font:900 26px/1 var(--display);font-stretch:125%;color:var(--accent)}
+
+/* Currículum */
+.cv{border:1px solid var(--line);background:var(--surface);padding:clamp(20px,3vw,48px);max-width:1100px}
+.cv-h{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-bottom:2px solid var(--accent);padding-bottom:18px;margin-bottom:24px}
+.cv-h h1{font-weight:900;font-size:clamp(28px,3.6vw,54px);line-height:.92;text-transform:uppercase;font-stretch:125%}
+.cv-contact{display:grid;gap:5px;text-align:right;align-content:end;color:var(--ink)}
+.cv-body{display:grid;grid-template-columns:var(--seven) var(--three);gap:clamp(18px,3vw,44px)}
+.cv-main,.cv-side{display:grid;gap:26px;align-content:start}
+.cv h2{margin-bottom:8px;font-family:var(--mono);font-stretch:100%;font-weight:500}
+.cv p{color:#d0d0d4}
+.cv-list{display:grid;gap:7px;font-size:14.5px;color:#d0d0d4}
+.cv-list b{color:var(--ink)}
+.cv .tl li{grid-template-columns:100px 1fr}
+
+/* Contacto */
+.cgrid3{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:var(--gap)}
+.cbox{border:1px solid var(--line);background:var(--surface);padding:18px;display:grid;gap:12px;align-content:start}
+.cbox h2{font-family:var(--mono);font-stretch:100%;font-weight:500;margin-bottom:4px}
+.cline{display:flex;gap:12px;align-items:center;text-decoration:none;border:1px solid var(--line);padding:12px;font-size:15px;word-break:break-word}
+.cline:hover{border-color:var(--accent)}
+.ic{width:30px;height:30px;display:grid;place-items:center;background:var(--accent);color:#140406;flex:none;font-size:14px}
+.cbox .btn{justify-self:start}
+.map{position:relative;border:1px solid var(--line);overflow:hidden}
+.map canvas{display:block;width:100%;height:auto}
+.pin{position:absolute;left:64%;top:57.5%;transform:translate(-8px,-8px);display:flex;align-items:center;gap:8px;font:700 13px/1 var(--display);font-stretch:110%;color:var(--ink);text-shadow:0 1px 6px #000}
+.pin i{width:16px;height:16px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px rgba(255,61,74,.25)}
+.mlabel{position:absolute;left:12px;top:44%;color:var(--muted)}
+.small{font-size:14px;color:var(--muted)}
+.cform{margin-top:var(--gap);border:1px solid var(--accent);padding:clamp(18px,2.6vw,34px);display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
+.cform h2{grid-column:1/-1;font-family:var(--mono);font-stretch:100%;font-weight:500}
+.frow{display:grid;gap:6px}
+.frow.full{grid-column:1/-1}
+.frow label{font:500 11.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.cform input,.cform textarea{background:var(--bg);border:1px solid var(--line);color:var(--ink);font:400 16px/1.4 var(--body);padding:12px}
+.cform input:focus,.cform textarea:focus{outline:2px solid var(--accent);outline-offset:0;border-color:transparent}
+.cform .err{border-color:var(--accent)}
+.fbtns{display:flex!important;align-items:center;gap:16px;flex-wrap:wrap}
+.fnote{color:var(--muted);font-size:13.5px}
+.fout{grid-column:1/-1;border:1px solid var(--line);background:var(--surface);padding:14px;display:grid;gap:12px}
+.fout.warn{border-color:var(--accent);color:var(--ink)}
+
+@media (max-width:900px){
+  .welcome,.bio,.cv-body{grid-template-columns:1fr}
+  .hero-viewer{aspect-ratio:4/3}
+  .cgrid.two,.goals,.skills-grid.three,.cgrid3,.cform{grid-template-columns:1fr}
+  .cv-contact{text-align:left}
+  .wh{grid-template-columns:auto 1fr}
+  .flag-in{grid-column:1/-1;justify-self:start}
+}
+@media (max-width:520px){
+  .w-facts li{padding-right:14px;margin-right:14px}
+  .avatar{max-width:180px}
+}
+.fout[hidden]{display:none!important}
+.cv-contact{text-transform:none!important}
+.cv-contact span{text-transform:none}
+@media (max-width:520px){ .w-facts{display:grid;grid-template-columns:repeat(3,1fr)} .w-facts li{border-right:0;margin-right:0;padding-right:8px} }
+/* ===== v4 ===== */
+/* puerta de contacto: negra como las otras, @ blanco */
+.door.at .d-img{background:#000;position:relative;display:grid;place-items:center}
+.door.at .d-img::after{content:"@";font:900 clamp(64px,7vw,120px)/1 var(--display);color:var(--ink);transition:color .3s}
+.door.at:hover .d-img::after{color:var(--accent)}
+@media (max-width:520px){ .door.at .d-img{display:grid} }
+
+/* carrusel de animaciones: una a una */
+.carousel{display:grid;gap:10px}
+.track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;gap:0;scrollbar-width:none}
+.track::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;scroll-snap-align:start}
+.slide video{aspect-ratio:16/9;width:100%;object-fit:cover}
+.cbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.cbar>button{background:var(--surface);border:1px solid var(--line);color:var(--ink);font:500 15px/1 var(--mono);padding:10px 14px;cursor:pointer}
+.cbar>button:hover{border-color:var(--ink)}
+.cbar>button:disabled{opacity:.35;cursor:default}
+.ccount{min-width:64px;text-align:center}
+.ccount b{color:var(--accent);font-weight:500}
+.dots{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+.dot{background:none;border:1px solid var(--line);color:var(--muted);font:500 11px/1 var(--mono);letter-spacing:.04em;padding:8px 10px;cursor:pointer}
+.dot[aria-current="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* revista interactiva */
+.flipbook{display:grid;gap:10px}
+.fstage{background:#000;display:grid;place-items:center;padding:clamp(8px,1.5vw,18px);border:1px solid var(--line)}
+.fpage{position:relative;width:min(100%,calc(78vh * 0.7071));}
+.fpage[hidden]{display:none}
+.fpage img{width:100%;height:auto;display:block;box-shadow:0 12px 40px rgba(0,0,0,.6)}
+.spot{position:absolute;background:transparent;border:2px dashed transparent;cursor:pointer;padding:0}
+.flipbook.show .spot{border-color:rgba(255,61,74,.85);background:rgba(255,61,74,.12)}
+.spot:hover,.spot:focus-visible{border-color:var(--accent)!important;background:rgba(255,61,74,.22)!important}
+.fhome{margin-left:auto}
+.fshow{display:flex;align-items:center;gap:6px;cursor:pointer}
+.fshow input{accent-color:var(--accent)}
+
+/* trabajo pendiente */
+.pend{display:grid;grid-template-columns:var(--seven) var(--three);gap:var(--gap);align-items:start}
+.pend-img{position:relative;overflow:hidden;border:1px solid var(--line)}
+.pend-img img{width:100%;aspect-ratio:16/7;object-fit:cover;filter:grayscale(1) brightness(.35) blur(2px);transform:scale(1.04)}
+.pend-img span{position:absolute;inset:0;display:grid;place-items:center;font-size:14px;color:var(--ink);letter-spacing:.2em}
+.witem.pending .text{position:static}
+@media (max-width:900px){ .pend{grid-template-columns:1fr} }
+@media (max-width:520px){ .dots{margin-left:0} .fhome{margin-left:0} }
+.v-err{position:absolute;left:10px;right:10px;bottom:46px;z-index:3;font-size:10px;color:#ffb3b8;background:rgba(8,8,10,.85);padding:5px 7px;text-transform:none;letter-spacing:0}
+/* ===== v5: logo AJ, nombre más contenido ===== */
+.logo-mark{position:relative;aspect-ratio:1/1;max-width:380px;border:1px solid var(--line);background:#07080b;display:grid;place-items:center;overflow:hidden}
+.logo-mark::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 calc(12.5% - 1px),rgba(255,61,74,.55) calc(12.5% - 1px) 12.5%);opacity:.22;animation:scan 1.6s cubic-bezier(.2,.7,.2,1) both}
+.lm-letters{position:relative;display:flex;align-items:baseline;font:900 clamp(96px,12vw,200px)/.8 var(--display);font-stretch:125%;letter-spacing:-.04em}
+.lm-letters b{color:var(--ink);font-weight:900}
+.lm-letters i{font-style:normal;color:var(--accent);margin-left:-.06em}
+.lm-foot{position:absolute;left:14px;bottom:12px;color:var(--muted)}
+.lm-corner{position:absolute;right:14px;top:12px;color:var(--accent)}
+.welcome{grid-template-columns:minmax(220px,3fr) 7fr;padding-top:clamp(16px,3vw,40px)}
+.wt-name{font-size:clamp(30px,3.8vw,62px)!important;line-height:.92}
+.wt-small{font-size:clamp(17px,1.6vw,24px)!important}
+.view .doors{margin-top:clamp(24px,3vw,44px)}
+.mini-mark{display:inline-flex;align-items:baseline;font:900 15px/1 var(--display);font-stretch:125%;border:1px solid var(--line);padding:4px 5px 3px}
+.mini-mark i{font-style:normal;color:var(--accent);margin-left:-.04em}
+.sig{gap:10px}
+/* visor de fotos: flechas grandes y visibles */
+.lb .prev,.lb .next{font-size:20px;padding:16px 18px;z-index:2}
+@media (max-width:900px){ .logo-mark{max-width:240px} }
+/* tarjetas de proyectos: 2 filas de 3, como las del inicio */
+.cgrid.two{grid-template-columns:repeat(3,1fr)}
+.cgrid.two .cc-img{aspect-ratio:16/9}
+.cgrid.two .cc-title{font-size:clamp(20px,1.7vw,28px)}
+.cgrid.two .cc-desc{font-size:14px}
+@media (max-width:1000px){ .cgrid.two{grid-template-columns:1fr 1fr} }
+@media (max-width:560px){ .cgrid.two{grid-template-columns:1fr} }
+
+/* demo reel en el inicio: 70 % vídeo / 30 % texto */
+.reel{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,3fr);gap:clamp(18px,3vw,44px);align-items:center;margin:clamp(28px,4vw,56px) 0}
+.reel-v{border:1px solid var(--line);background:#07080b;aspect-ratio:16/9}
+.reel-v video{display:block;width:100%;height:100%;object-fit:cover;background:#07080b}
+.reel-t h2{font-size:clamp(26px,2.6vw,40px);line-height:1.05;margin:.3em 0 .5em}
+.reel-t p:not(.mono){color:var(--muted);font-size:15px;margin-bottom:1.2em}
+@media (max-width:900px){.reel{grid-template-columns:1fr}}
+@media (max-width:900px){.welcome{grid-template-columns:minmax(0,1fr)}.welcome .logo-mark{max-width:200px}}
+
+/* CV en PDF: 70 % texto/acciones, 30 % vista previa */
+.cvpdf{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,7fr);gap:clamp(20px,3vw,48px);align-items:center;margin:8px 0 clamp(32px,4vw,56px);padding-bottom:clamp(28px,4vw,48px);border-bottom:1px solid var(--line)}
+.cvpdf-img{display:block;border:1px solid var(--line);background:#fff;box-shadow:0 18px 40px rgba(0,0,0,.45);transition:transform .25s}
+.cvpdf-img:hover{transform:translateY(-4px)}
+.cvpdf-img img{display:block;width:100%;height:auto}
+.cvpdf-t h2{font-size:clamp(26px,2.6vw,40px);line-height:1.05;margin:.3em 0 .5em}
+.cvpdf-t p:not(.mono){color:var(--muted);font-size:15px;max-width:52ch;margin-bottom:1.2em}
+@media (max-width:760px){.cvpdf{grid-template-columns:1fr}.cvpdf-img{max-width:280px}}
+
+/* puertas del inicio con símbolo: AJ · cubo 3D · @ */
+.door.sym .d-img{background:#000;position:relative;display:grid;place-items:center}
+.door.sym .d-sym{transition:color .3s,transform .3s}
+.door.sym .aj{font:900 clamp(64px,7vw,120px)/1 var(--display);color:var(--ink);letter-spacing:-.04em}
+.door.sym .aj b{color:var(--accent);font-weight:900}
+.door.sym:hover .aj{transform:scale(1.04)}
+.door.sym .cube{width:clamp(84px,9.5vw,150px);height:auto;color:var(--ink)}
+.door.sym:hover .cube{color:var(--accent);transform:rotate(-6deg)}
+@media (max-width:520px){ .door.sym .d-img{display:grid} }
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="sig" href="#inicio"><span class="mini-mark"><b>A</b><i>J</i></span><span>Alberto Jerónimo Andrades</span></a>
+  <div class="lang" role="group" aria-label="Idioma / Language">
+    <button type="button" data-set="es" aria-pressed="true">ES</button><button type="button" data-set="en" aria-pressed="false">EN</button>
+  </div>
+  <nav class="mainnav" aria-label="Principal">
+    <a href="#inicio" data-nav="inicio"><span data-es="Inicio" data-en="Home">Inicio</span></a>
+    <a href="#proyectos" data-nav="proyectos"><span data-es="Proyectos" data-en="Projects">Proyectos</span></a>
+    <a href="#sobre-mi" data-nav="sobre-mi"><span data-es="Sobre mí" data-en="About">Sobre mí</span></a>
+    <a href="#contacto" data-nav="contacto"><span data-es="Contacto" data-en="Contact">Contacto</span></a>
+  </nav>
+  <div class="search">
+    <label for="q" class="sr"><span data-es="Buscar proyectos" data-en="Search projects">Buscar proyectos</span></label>
+    <input id="q" type="search" autocomplete="off" placeholder="Buscar…" data-ph-es="Buscar…" data-ph-en="Search…">
+    <ul class="results" id="results" hidden></ul>
+  </div>
+  <button class="menu" type="button" id="menu" aria-expanded="false" aria-controls="mnav" aria-label="Menú">☰</button>
+</header>
+<nav class="mnav" id="mnav" hidden>
+  <a href="#inicio"><span data-es="Inicio" data-en="Home">Inicio</span></a><a href="#proyectos"><span data-es="Proyectos" data-en="Projects">Proyectos</span></a><a href="#sobre-mi"><span data-es="Sobre mí" data-en="About">Sobre mí</span></a><a href="#contacto"><span data-es="Contacto" data-en="Contact">Contacto</span></a>
+</nav>
+<main id="main">
+<section class="view" data-view="inicio">
+  <div class="welcome">
+    <div class="w-model">
+      <div class="logo-mark" role="img" aria-label="Logotipo AJ de Alberto Jerónimo Andrades">
+        <span class="lm-letters"><b>A</b><i>J</i></span>
+        <span class="lm-foot mono">Alberto Jerónimo Andrades · 3D</span>
+        <span class="lm-corner mono">AJA—2026</span>
+      </div>
+    </div>
+    <div class="w-text">
+      <p class="mono acc" data-es="Portfolio · 2026" data-en="Portfolio · 2026">Portfolio · 2026</p>
+      <h1 class="wtitle"><span class="wt-small" data-es="Bienvenido a mi portfolio" data-en="Welcome to my portfolio">Bienvenido a mi portfolio</span><span class="wt-name">Alberto Jerónimo <em>Andrades</em></span></h1>
+      <p class="w-sub" data-es="Artista 3D generalista. Aquí tienes mis proyectos de modelado, texturizado, animación, cine y videojuegos, con sus renders finales y modelos que puedes girar en 3D." data-en="3D generalist. Here are my modelling, texturing, animation, film and game projects, with final renders and models you can orbit in 3D.">Artista 3D generalista. Aquí tienes mis proyectos de modelado, texturizado, animación, cine y videojuegos, con sus renders finales y modelos que puedes girar en 3D.</p>
+      <div class="btns"><a class="btn primary" href="#proyectos"><span data-es="Ver proyectos" data-en="View projects">Ver proyectos</span> →</a><a class="btn" href="#reel" data-reel>▶ <span data-es="Demo reel" data-en="Demo reel">Demo reel</span></a><a class="btn" href="#sobre-mi"><span data-es="Sobre mí" data-en="About me">Sobre mí</span></a></div>
+      <ul class="w-facts"><li><b>1</b><span data-es="juego publicado en Google Play" data-en="game live on Google Play">juego publicado en Google Play</span></li><li><b>5</b><span data-es="modelos 3D interactivos" data-en="interactive 3D models">modelos 3D interactivos</span></li><li><b>21</b><span data-es="trabajos en el portfolio" data-en="works in the portfolio">trabajos en el portfolio</span></li></ul>
+    </div>
+  </div>
+  <div class="reel" id="reel">
+    <div class="reel-v"><video src="media/reel.mp4" poster="img/poster-reel.webp" controls preload="none" playsinline></video></div>
+    <div class="reel-t">
+      <p class="mono acc" data-es="Demo reel · 35 s" data-en="Demo reel · 35 s">Demo reel · 35 s</p>
+      <h2 data-es="Mis trabajos en 35 segundos" data-en="My work in 35 seconds">Mis trabajos en 35 segundos</h2>
+      <p data-es="Recluso, STRIKE, Una Navidad Explosiva, modelos 3D girando, animación, matte painting, texturizado y Tres en Ruta. Montado a ritmo de la música, con banda sonora instrumental generada con IA (ElevenLabs)." data-en="Recluso, STRIKE, Una Navidad Explosiva, turning 3D models, animation, matte painting, texturing and Tres en Ruta. Cut to the beat, with an instrumental soundtrack generated with AI (ElevenLabs).">Recluso, STRIKE, Una Navidad Explosiva, modelos 3D girando, animación, matte painting, texturizado y Tres en Ruta. Montado a ritmo de la música, con banda sonora instrumental generada con IA (ElevenLabs).</p>
+      <a class="btn" href="#proyectos"><span data-es="Ver cada proyecto" data-en="See each project">Ver cada proyecto</span> →</a>
+    </div>
+  </div>
+  <div class="doors">
+    <a class="door sym" href="#sobre-mi"><span class="d-img"><span class="d-sym aj" aria-hidden="true">A<b>J</b></span></span>
+      <span class="d-txt"><span class="mono acc">01</span><span class="d-title" data-es="Sobre mí" data-en="About me">Sobre mí</span><span class="d-sub" data-es="Biografía, currículum, habilidades y objetivos profesionales" data-en="Bio, CV, skills and career goals">Biografía, currículum, habilidades y objetivos profesionales</span><span class="d-go mono"><span data-es="Entrar" data-en="Enter">Entrar</span> →</span></span></a>
+    <a class="door sym" href="#proyectos"><span class="d-img"><svg class="d-sym cube" viewBox="0 0 120 120" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"><path d="M60 12 L104 36 L104 84 L60 108 L16 84 L16 36 Z"/><path d="M16 36 L60 60 L104 36 M60 60 L60 108"/></g><g fill="none" stroke="currentColor" stroke-width="1.2" opacity=".45"><path d="M38 24 L82 48 L82 96 M82 24 L38 48 L38 96 M16 60 L60 84 L104 60"/></g></svg></span>
+      <span class="d-txt"><span class="mono acc">02</span><span class="d-title" data-es="Proyectos" data-en="Projects">Proyectos</span><span class="d-sub" data-es="Conoce mis trabajos, ordenados por disciplina" data-en="Explore my work, sorted by discipline">Conoce mis trabajos, ordenados por disciplina</span><span class="d-go mono"><span data-es="Entrar" data-en="Enter">Entrar</span> →</span></span></a>
+    <a class="door at" href="#contacto"><span class="d-img"></span>
+      <span class="d-txt"><span class="mono acc">03</span><span class="d-title" data-es="Contacto" data-en="Contact">Contacto</span><span class="d-sub" data-es="Correo, ubicación, disponibilidad y formulario" data-en="Email, location, availability and form">Correo, ubicación, disponibilidad y formulario</span><span class="d-go mono"><span data-es="Escribir" data-en="Write">Escribir</span> →</span></span></a>
+  </div>
+</section>
+<section class="view" data-view="proyectos" hidden>
+  <header class="vh"><div><span class="mono acc"><span data-es="Proyectos" data-en="Projects">Proyectos</span></span><h1 data-es="Mis proyectos" data-en="My projects">Mis proyectos</h1></div>
+  <div><p class="lead-s" data-es="Aquí puedes ver los proyectos en los que he trabajado, ordenados por secciones." data-en="Here are the projects I&#x27;ve worked on, sorted into sections.">Aquí puedes ver los proyectos en los que he trabajado, ordenados por secciones.</p>
+  <span class="mono">21 <span data-es="trabajos" data-en="works">trabajos</span> · 6 <span data-es="secciones" data-en="sections">secciones</span></span></div></header>
+  <div class="cgrid two"><a class="ccard" href="#cat-animaciones"><span class="cc-img"><img src="img/poster-anim-ciclo.webp" alt="" loading="lazy"></span>
+    <span class="cc-txt"><span class="mono acc">01</span><span class="cc-title" data-es="Animaciones" data-en="Animation">Animaciones</span><span class="cc-desc" data-es="Cuatro ejercicios de fundamentos de animación 3D en Maya. Baja para verlos uno a uno." data-en="Four 3D animation fundamentals exercises in Maya. Scroll down to see them one by one.">Cuatro ejercicios de fundamentos de animación 3D en Maya. Baja para verlos uno a uno.</span>
+    <span class="cc-foot mono"><span>4 <span data-es="trabajos" data-en="works">trabajos</span></span><span class="cc-go"><span data-es="Ver proyectos" data-en="View projects">Ver proyectos</span> →</span></span></span></a><a class="ccard" href="#cat-modelados"><span class="cc-img"><img src="img/celda-04.webp" alt="" loading="lazy"></span>
+    <span class="cc-txt"><span class="mono acc">02</span><span class="cc-title" data-es="Modelados" data-en="Modelling">Modelados</span><span class="cc-desc" data-es="Personaje, escenarios y objetos. Cada modelo está junto a su render y lo puedes girar en 3D." data-en="A character, sets and props. Each model sits next to its render and can be orbited in 3D.">Personaje, escenarios y objetos. Cada modelo está junto a su render y lo puedes girar en 3D.</span>
+    <span class="cc-foot mono"><span>6 <span data-es="trabajos" data-en="works">trabajos</span></span><span class="cc-go"><span data-es="Ver proyectos" data-en="View projects">Ver proyectos</span> →</span></span></span></a><a class="ccard" href="#cat-fotomontajes"><span class="cc-img"><img src="img/matte-final.webp" alt="" loading="lazy"></span>
+    <span class="cc-txt"><span class="mono acc">03</span><span class="cc-title" data-es="Fotomontajes y diseño" data-en="Compositing and design">Fotomontajes y diseño</span><span class="cc-desc" data-es="Matte paintings, cartelería real y una revista interactiva." data-en="Matte paintings, real-world posters and an interactive magazine.">Matte paintings, cartelería real y una revista interactiva.</span>
+    <span class="cc-foot mono"><span>5 <span data-es="trabajos" data-en="works">trabajos</span></span><span class="cc-go"><span data-es="Ver proyectos" data-en="View projects">Ver proyectos</span> →</span></span></span></a><a class="ccard" href="#cat-texturizados"><span class="cc-img"><img src="img/pelo-frente.webp" alt="" loading="lazy"></span>
+    <span class="cc-txt"><span class="mono acc">04</span><span class="cc-title" data-es="Texturizados" data-en="Texturing">Texturizados</span><span class="cc-desc" data-es="Pelo con XGen y texturizado de objetos y personajes." data-en="Hair with XGen and texturing of props and characters.">Pelo con XGen y texturizado de objetos y personajes.</span>
+    <span class="cc-foot mono"><span>3 <span data-es="trabajos" data-en="works">trabajos</span></span><span class="cc-go"><span data-es="Ver proyectos" data-en="View projects">Ver proyectos</span> →</span></span></span></a><a class="ccard" href="#cat-videojuegos"><span class="cc-img"><img src="img/ter-1.webp" alt="" loading="lazy"></span>
+    <span class="cc-txt"><span class="mono acc">05</span><span class="cc-title" data-es="Videojuegos" data-en="Video games">Videojuegos</span><span class="cc-desc" data-es="Juegos móviles en Unity, uno ya publicado en Google Play." data-en="Mobile games in Unity, one already live on Google Play.">Juegos móviles en Unity, uno ya publicado en Google Play.</span>
+    <span class="cc-foot mono"><span>1 <span data-es="trabajos" data-en="works">trabajos</span> + 1 <span data-es="en desarrollo" data-en="in progress">en desarrollo</span></span><span class="cc-go"><span data-es="Ver proyectos" data-en="View projects">Ver proyectos</span> →</span></span></span></a><a class="ccard" href="#cat-cine"><span class="cc-img"><img src="img/poster-navidad.webp" alt="" loading="lazy"></span>
+    <span class="cc-txt"><span class="mono acc">06</span><span class="cc-title" data-es="Cine y vídeo" data-en="Film and video">Cine y vídeo</span><span class="cc-desc" data-es="Anuncio 3D y cortometraje stop motion." data-en="A 3D commercial and a stop-motion short.">Anuncio 3D y cortometraje stop motion.</span>
+    <span class="cc-foot mono"><span>2 <span data-es="trabajos" data-en="works">trabajos</span></span><span class="cc-go"><span data-es="Ver proyectos" data-en="View projects">Ver proyectos</span> →</span></span></span></a></div>
+  <div class="together"><div><h2 data-es="¿Te interesa trabajar juntos?" data-en="Interested in working together?">¿Te interesa trabajar juntos?</h2><p data-es="Busco prácticas en cine, videojuegos o edición." data-en="I&#x27;m looking for an internship in film, games or video editing.">Busco prácticas en cine, videojuegos o edición.</p></div>
+    <a class="btn primary" href="#contacto"><span data-es="Contáctame" data-en="Contact me">Contáctame</span> →</a></div>
+</section>
+<section class="view" data-view="cat-animaciones" hidden>
+  <div class="crumbs mono"><a href="#proyectos"><span data-es="Proyectos" data-en="Projects">Proyectos</span></a> / <span data-es="Animaciones" data-en="Animation">Animaciones</span></div>
+  <header class="vh"><div><span class="mono acc">01 / 06</span><h1 data-es="Animaciones" data-en="Animation">Animaciones</h1></div>
+  <div><p class="lead-s" data-es="Cuatro ejercicios de fundamentos de animación 3D en Maya. Baja para verlos uno a uno." data-en="Four 3D animation fundamentals exercises in Maya. Scroll down to see them one by one.">Cuatro ejercicios de fundamentos de animación 3D en Maya. Baja para verlos uno a uno.</p><span class="mono">4 <span data-es="trabajos" data-en="works">trabajos</span></span></div></header>
+  <nav class="jump" aria-label="Trabajos de la categoría"><span class="mono"><span data-es="Ir a" data-en="Jump to">Ir a</span></span><a href="#anim-ciclo"><span data-es="Ciclo de andar" data-en="Walk cycle">Ciclo de andar</span></a><a href="#anim-pendulos"><span data-es="Péndulos" data-en="Pendulums">Péndulos</span></a><a href="#anim-bandera"><span data-es="Bandera de córner" data-en="Corner flag">Bandera de córner</span></a><a href="#anim-ardilla"><span data-es="Ardilla" data-en="Squirrel">Ardilla</span></a></nav>
+  
+<article class="witem" id="anim-ciclo" data-work="anim-ciclo">
+  <header class="wh"><span class="wnum">01</span><div><span class="kind" data-es="Animación 3D · ejercicio" data-en="3D animation · exercise">Animación 3D · ejercicio</span><h2 data-es="Ciclo de andar" data-en="Walk cycle">Ciclo de andar</h2></div></header>
+  <div class="work">
+    <div class="media"><div class="g g1"><figure class="loop"><video autoplay muted loop playsinline preload="metadata" poster="img/poster-anim-ciclo.webp"><source src="media/anim-ciclo.mp4" type="video/mp4"></video><figcaption data-es="Ciclo de andar" data-en="Walk cycle">Ciclo de andar</figcaption></figure></div></div>
+    <div class="text">
+      <p data-es="Ciclo de andar en bucle: contacto, paso y recuperación, con el peso pasando de una pierna a otra." data-en="A looping walk cycle: contact, passing and recoil, with weight shifting from leg to leg.">Ciclo de andar en bucle: contacto, paso y recuperación, con el peso pasando de una pierna a otra.</p>
+      <dl class="meta"><dt data-es="Contexto" data-en="Context">Contexto</dt><dd data-es="Ejercicio de animación en Maya" data-en="Animation exercise in Maya">Ejercicio de animación en Maya</dd><dt data-es="Mi papel" data-en="My role">Mi papel</dt><dd data-es="Individual" data-en="Solo">Individual</dd></dl>
+      <ul class="chips"><li>Maya</li><li>Graph Editor</li></ul>
+      
+    </div>
+  </div>
+</article>
+<article class="witem" id="anim-pendulos" data-work="anim-pendulos">
+  <header class="wh"><span class="wnum">02</span><div><span class="kind" data-es="Animación 3D · ejercicio" data-en="3D animation · exercise">Animación 3D · ejercicio</span><h2 data-es="Péndulos" data-en="Pendulums">Péndulos</h2></div></header>
+  <div class="work">
+    <div class="media"><div class="g g1"><figure class="loop"><video autoplay muted loop playsinline preload="metadata" poster="img/poster-anim-pendulos.webp"><source src="media/anim-pendulos.mp4" type="video/mp4"></video><figcaption data-es="Péndulos" data-en="Pendulums">Péndulos</figcaption></figure></div></div>
+    <div class="text">
+      <p data-es="Péndulos con varias articulaciones para trabajar el arrastre y la superposición del movimiento." data-en="Multi-joint pendulums to practise drag and overlapping action.">Péndulos con varias articulaciones para trabajar el arrastre y la superposición del movimiento.</p>
+      <dl class="meta"><dt data-es="Contexto" data-en="Context">Contexto</dt><dd data-es="Ejercicio de animación en Maya" data-en="Animation exercise in Maya">Ejercicio de animación en Maya</dd><dt data-es="Mi papel" data-en="My role">Mi papel</dt><dd data-es="Individual" data-en="Solo">Individual</dd></dl>
+      <ul class="chips"><li>Maya</li><li>Graph Editor</li></ul>
+      
+    </div>
+  </div>
+</article>
+<article class="witem" id="anim-bandera" data-work="anim-bandera">
+  <header class="wh"><span class="wnum">03</span><div><span class="kind" data-es="Animación 3D · ejercicio" data-en="3D animation · exercise">Animación 3D · ejercicio</span><h2 data-es="Bandera de córner" data-en="Corner flag">Bandera de córner</h2></div></header>
+  <div class="work">
+    <div class="media"><div class="g g1"><figure class="loop"><video autoplay muted loop playsinline preload="metadata" poster="img/poster-anim-bandera.webp"><source src="media/anim-bandera.mp4" type="video/mp4"></video><figcaption data-es="Bandera de córner" data-en="Corner flag">Bandera de córner</figcaption></figure></div></div>
+    <div class="text">
+      <p data-es="Bandera de córner que reacciona al golpe del balón, con ondulación y asentamiento." data-en="A corner flag reacting to the ball&#x27;s hit, with waving and settling.">Bandera de córner que reacciona al golpe del balón, con ondulación y asentamiento.</p>
+      <dl class="meta"><dt data-es="Contexto" data-en="Context">Contexto</dt><dd data-es="Ejercicio de animación en Maya" data-en="Animation exercise in Maya">Ejercicio de animación en Maya</dd><dt data-es="Mi papel" data-en="My role">Mi papel</dt><dd data-es="Individual" data-en="Solo">Individual</dd></dl>
+      <ul class="chips"><li>Maya</li><li>Graph Editor</li></ul>
+      
+    </div>
+  </div>
+</article>
+<article class="witem" id="anim-ardilla" data-work="anim-ardilla">
+  <header class="wh"><span class="wnum">04</span><div><span class="kind" data-es="Animación 3D · ejercicio" data-en="3D animation · exercise">Animación 3D · ejercicio</span><h2 data-es="Ardilla" data-en="Squirrel">Ardilla</h2></div></header>
+  <div class="work">
+    <div class="media"><div class="g g1"><figure class="loop"><video autoplay muted loop playsinline preload="metadata" poster="img/poster-anim-ardilla.webp"><source src="media/anim-ardilla.mp4" type="video/mp4"></video><figcaption data-es="Ardilla" data-en="Squirrel">Ardilla</figcaption></figure></div></div>
+    <div class="text">
+      <p data-es="Salto con anticipación, arco y aterrizaje, cuidando el timing y el peso." data-en="A jump with anticipation, arc and landing, focused on timing and weight.">Salto con anticipación, arco y aterrizaje, cuidando el timing y el peso.</p>
+      <dl class="meta"><dt data-es="Contexto" data-en="Context">Contexto</dt><dd data-es="Ejercicio de animación en Maya" data-en="Animation exercise in Maya">Ejercicio de animación en Maya</dd><dt data-es="Mi papel" data-en="My role">Mi papel</dt><dd data-es="Individual" data-en="Solo">Individual</dd></dl>
+      <ul class="chips"><li>Maya</li><li>Graph Editor</li></ul>
+      
+    </div>
+  </div>
+</article>
+  <nav class="pnav" aria-label="Categorías"><span></span><a class="mid" href="#proyectos"><span class="mono"><span data-es="Volver a" data-en="Back to">Volver a</span></span><span data-es="Mis proyectos" data-en="My projects">Mis proyectos</span></a><a class="r" href="#cat-modelados"><span class="mono"><span data-es="Siguiente" data-en="Next">Siguiente</span> →</span><span data-es="Modelados" data-en="Modelling">Modelados</span></a></nav>
+</section>
+<section class="view" data-view="cat-modelados" hidden>
+  <div class="crumbs mono"><a href="#proyectos"><span data-es="Proyectos" data-en="Projects">Proyectos</span></a> / <span data-es="Modelados" data-en="Modelling">Modelados</span></div>
+  <header class="vh"><div><span class="mono acc">02 / 06</span><h1 data-es="Modelados" data-en="Modelling">Modelados</h1></div>
+  <div><p class="lead-s" data-es="Personaje, escenarios y objetos. Cada modelo está junto a su render y lo puedes girar en 3D." data-en="A character, sets and props. Each model sits next to its render and can be orbited in 3D.">Personaje, escenarios y objetos. Cada modelo está junto a su render y lo puedes girar en 3D.</p><span class="mono">6 <span data-es="trabajos" data-en="works">trabajos</span></span></div></header>
+  <nav class="jump" aria-label="Trabajos de la categoría"><span class="mono"><span data-es="Ir a" data-en="Jump to">Ir a</span></span><a href="#recluso"><span data-es="Recluso #4471-X" data-en="Inmate #4471-X">Recluso #4471-X</span></a><a href="#puno"><span data-es="Puño americano" data-en="Brass knuckles">Puño americano</span></a><a href="#collar"><span data-es="Collar sobre busto" data-en="Necklace on a bust">Collar sobre busto</span></a><a href="#hospital"><span data-es="Habitación de hospital" data-en="Hospital room">Habitación de hospital</span></a><a href="#circuito"><span data-es="Curva de circuito de carreras" data-en="Race track corner">Curva de circuito de carreras</span></a><a href="#props"><span data-es="Juguetes de toda la vida" data-en="Classic toys">Juguetes de toda la vida</span></a></nav>
+  
+<article class="witem" id="recluso" data-work="recluso">
+  <header class="wh"><span class="wnum">01</span><div><span class="kind" data-es="Proyecto principal · personaje y entorno" data-en="Lead project · character and environment">Proyecto principal · personaje y entorno</span><h2 data-es="Recluso #4471-X" data-en="Inmate #4471-X">Recluso #4471-X</h2></div></header>
+  <div class="work">
+    <div class="media"><figure><img src="img/celda-05.webp" alt="Render final · plano general" data-alt-en="Final render · wide shot" loading="lazy"><figcaption data-es="Render final · plano general" data-en="Final render · wide shot">Render final · plano general</figcaption></figure><div class="g g2"><figure class="fit"><img src="img/celda-01.webp" alt="Vitrinas" data-alt-en="Display cases" loading="lazy"><figcaption data-es="Vitrinas" data-en="Display cases">Vitrinas</figcaption></figure><figure class="fit"><img src="img/celda-04.webp" alt="Detalle de personaje" data-alt-en="Character close-up" loading="lazy"><figcaption data-es="Detalle de personaje" data-en="Character close-up">Detalle de personaje</figcaption></figure></div><div class="pair"><figure><img src="img/pj-render.webp" alt="Render del personaje" data-alt-en="Character render" loading="lazy"><figcaption data-es="Render del personaje" data-en="Character render">Render del personaje</figcaption></figure><div class="viewer" data-model="models/personaje.js" data-az="20" data-el="6" data-zoom="0.78"><div class="v-stage"></div><div class="v-poster"><img src="img/clay-personaje.webp" alt="" loading="lazy"><button type="button" class="v-load"><span data-es="▶ Ver en 3D" data-en="▶ View in 3D">▶ Ver en 3D</span></button></div><span class="v-badge mono"><span data-es="Modelo 3D · clay" data-en="3D model · clay">Modelo 3D · clay</span></span><div class="v-bar"><span class="mono"><span data-es="Modelo interactivo" data-en="Interactive model">Modelo interactivo</span></span><span class="v-modes"><button type="button" data-reset aria-label="Reiniciar vista">↺</button></span></div><span class="v-hint mono"><span data-es="Arrastra para girar · rueda o pellizco para zoom" data-en="Drag to orbit · scroll or pinch to zoom">Arrastra para girar · rueda o pellizco para zoom</span></span></div></div><div class="steps"><figure><img src="img/pj-boceto.webp" alt="Boceto" data-alt-en="Sketch" loading="lazy"><figcaption data-es="Boceto" data-en="Sketch">Boceto</figcaption></figure><figure><img src="img/pj-turn.webp" alt="Turnaround" data-alt-en="Turnaround" loading="lazy"><figcaption data-es="Turnaround" data-en="Turnaround">Turnaround</figcaption></figure><figure><img src="img/pj-tpose.webp" alt="Modelo y texturas" data-alt-en="Model and textures" loading="lazy"><figcaption data-es="Modelo y texturas" data-en="Model and textures">Modelo y texturas</figcaption></figure><figure><img src="img/celda-luz1.webp" alt="Estudio de luz" data-alt-en="Lighting study" loading="lazy"><figcaption data-es="Estudio de luz" data-en="Lighting study">Estudio de luz</figcaption></figure><figure><img src="img/celda-03.webp" alt="Render" data-alt-en="Render" loading="lazy"><figcaption data-es="Render" data-en="Render">Render</figcaption></figure></div></div>
+    <div class="text">
+      <p data-es="Un preso en una celda de contención futurista. Diseñé el personaje, lo modelé y texturicé, y construí a su alrededor un escenario con barrotes láser y una ficha holográfica." data-en="A prisoner in a futuristic holding cell. I designed, modelled and textured the character, then built a set around him with laser bars and a holographic file.">Un preso en una celda de contención futurista. Diseñé el personaje, lo modelé y texturicé, y construí a su alrededor un escenario con barrotes láser y una ficha holográfica.</p>
+      <dl class="meta"><dt data-es="Contexto" data-en="Context">Contexto</dt><dd data-es="Proyecto de personaje, 1.er curso" data-en="Character project, 1st year">Proyecto de personaje, 1.er curso</dd><dt data-es="Mi papel" data-en="My role">Mi papel</dt><dd data-es="Individual: diseño, modelado, texturas, luz y render" data-en="Solo: design, modelling, texturing, lighting, rendering">Individual: diseño, modelado, texturas, luz y render</dd><dt data-es="Proceso" data-en="Process">Proceso</dt><dd data-es="Boceto, turnaround, modelado, texturas, estudio de luz y render. El modelo se puede girar en 3D" data-en="Sketch, turnaround, modelling, texturing, lighting study, render. The model can be orbited in 3D">Boceto, turnaround, modelado, texturas, estudio de luz y render. El modelo se puede girar en 3D</dd><dt data-es="Resultado" data-en="Outcome">Resultado</dt><dd data-es="Serie de renders finales en Full HD" data-en="A set of final renders in Full HD">Serie de renders finales en Full HD</dd></dl>
+      <ul class="chips"><li>Maya</li><li>Arnold</li><li>Photoshop</li></ul>
+      
+    </div>
+  </div>
+</article>
+<article class="witem" id="puno" data-work="puno">
+  <header class="wh"><span class="wnum">02</span><div><span class="kind" data-es="Modelado 3D · objeto" data-en="3D modelling · prop">Modelado 3D · objeto</span><h2 data-es="Puño americano" data-en="Brass knuckles">Puño americano</h2></div></header>
+  <div class="work">
+    <div class="media"><div class="pair"><figure><img src="img/puno-render.webp" alt="Render en la celda #4471-X" data-alt-en="Render in cell #4471-X" loading="lazy"><figcaption data-es="Render en la celda #4471-X" data-en="Render in cell #4471-X">Render en la celda #4471-X</figcaption></figure><div class="viewer" data-model="models/puno.js" data-az="0" data-el="12" data-zoom="0.85"><div class="v-stage"></div><div class="v-poster"><img src="img/clay-puno.webp" alt="" loading="lazy"><button type="button" class="v-load"><span data-es="▶ Ver en 3D" data-en="▶ View in 3D">▶ Ver en 3D</span></button></div><span class="v-badge mono"><span data-es="Modelo 3D · clay" data-en="3D model · clay">Modelo 3D · clay</span></span><div class="v-bar"><span class="mono"><span data-es="Modelo interactivo" data-en="Interactive model">Modelo interactivo</span></span><span class="v-modes"><button type="button" data-reset aria-label="Reiniciar vista">↺</button></span></div><span class="v-hint mono"><span data-es="Arrastra para girar · rueda o pellizco para zoom" data-en="Drag to orbit · scroll or pinch to zoom">Arrastra para girar · rueda o pellizco para zoom</span></span></div></div></div>
+    <div class="text">
+      <p data-es="Objeto modelado para la celda del Recluso #4471-X, donde aparece expuesto en una vitrina." data-en="A prop modelled for the Inmate #4471-X cell, where it sits on display.">Objeto modelado para la celda del Recluso #4471-X, donde aparece expuesto en una vitrina.</p>
+      <dl class="meta"><dt data-es="Contexto" data-en="Context">Contexto</dt><dd data-es="Objeto del escenario, 1.er curso" data-en="Set prop, 1st year">Objeto del escenario, 1.er curso</dd><dt data-es="Mi papel" data-en="My role">Mi papel</dt><dd data-es="Modelado, material y render" data-en="Modelling, material and rendering">Modelado, material y render</dd></dl>
+      <ul class="chips"><li>Maya</li><li>Arnold</li></ul>
+      
+    </div>
+  </div>
+</article>
+<article class="witem" id="collar" data-work="collar">
+  <header class="wh"><span class="wnum">03</span><div><span class="kind" data-es="Texturizado · objeto" data-en="Texturing · object">Texturizado · objeto</span><h2 data-es="Collar sobre busto" data-en="Necklace on a bust">Collar sobre busto</h2></div></header>
+  <div class="work">
+    <div class="media"><div class="pair"><figure><img src="img/collar-perspectiva.webp" alt="Render · perspectiva" data-alt-en="Render · perspective" loading="lazy"><figcaption data-es="Render · perspectiva" data-en="Render · perspective">Render · perspectiva</figcaption></figure><div class="viewer" data-model="models/collar.js" data-az="25" data-el="10" data-zoom="0.9"><div class="v-stage"></div><div class="v-poster"><img src="img/clay-collar.webp" alt="" loading="lazy"><button type="button" class="v-load"><span data-es="▶ Ver en 3D" data-en="▶ View in 3D">▶ Ver en 3D</span></button></div><span class="v-badge mono"><span data-es="Modelo 3D · clay" data-en="3D model · clay">Modelo 3D · clay</span></span><div class="v-bar"><span class="mono"><span data-es="Modelo interactivo" data-en="Interactive model">Modelo interactivo</span></span><span class="v-modes"><button type="button" data-reset aria-label="Reiniciar vista">↺</button></span></div><span class="v-hint mono"><span data-es="Arrastra para girar · rueda o pellizco para zoom" data-en="Drag to orbit · scroll or pinch to zoom">Arrastra para girar · rueda o pellizco para zoom</span></span></div></div><div class="g g3"><figure class="fit"><img src="img/collar-frente.webp" alt="Frente" data-alt-en="Front" loading="lazy"><figcaption data-es="Frente" data-en="Front">Frente</figcaption></figure><figure class="fit"><img src="img/collar-lado1.webp" alt="Lateral" data-alt-en="Side" loading="lazy"><figcaption data-es="Lateral" data-en="Side">Lateral</figcaption></figure><figure class="fit"><img src="img/collar-nodos.webp" alt="Red de nodos del shader" data-alt-en="Shader node network" loading="lazy"><figcaption data-es="Red de nodos del shader" data-en="Shader node network">Red de nodos del shader</figcaption></figure></div></div>
+    <div class="text">
+      <p data-es="Busto con collar de cadena y marco de foto: UVs, mapas de textura y red de shaders en Arnold." data-en="A bust with a chain necklace and photo frame: UVs, texture maps and an Arnold shader network.">Busto con collar de cadena y marco de foto: UVs, mapas de textura y red de shaders en Arnold.</p>
+      <dl class="meta"><dt data-es="Contexto" data-en="Context">Contexto</dt><dd data-es="Ejercicio de objeto texturizado, 1.er curso" data-en="Textured object exercise, 1st year">Ejercicio de objeto texturizado, 1.er curso</dd><dt data-es="Mi papel" data-en="My role">Mi papel</dt><dd data-es="Individual" data-en="Solo">Individual</dd><dt data-es="Proceso" data-en="Process">Proceso</dt><dd data-es="Modelado, UVs, mapas en Photoshop y shading en Arnold" data-en="Modelling, UVs, Photoshop maps and Arnold shading">Modelado, UVs, mapas en Photoshop y shading en Arnold</dd></dl>
+      <ul class="chips"><li>Maya</li><li>Arnold</li><li>Photoshop</li></ul>
+      
+    </div>
+  </div>
+</article>
+<article class="witem" id="hospital" data-work="hospital">
+  <header class="wh"><span class="wnum">04</span><div><span class="kind" data-es="Modelado 3D · escenario" data-en="3D modelling · set">Modelado 3D · escenario</span><h2 data-es="Habitación de hospital" data-en="Hospital room">Habitación de hospital</h2></div></header>
+  <div class="work">
+    <div class="media"><div class="pair"><figure><img src="img/hospital.webp" alt="Render" data-alt-en="Render" loading="lazy"><figcaption data-es="Render" data-en="Render">Render</figcaption></figure><div class="viewer" data-model="models/aa.js" data-az="215" data-el="32" data-zoom="0.8"><div class="v-stage"></div><div class="v-poster"><img src="img/clay-hospital.webp" alt="" loading="lazy"><button type="button" class="v-load"><span data-es="▶ Ver en 3D" data-en="▶ View in 3D">▶ Ver en 3D</span></button></div><span class="v-badge mono"><span data-es="Modelo 3D · clay" data-en="3D model · clay">Modelo 3D · clay</span></span><div class="v-bar"><span class="mono"><span data-es="Modelo interactivo" data-en="Interactive model">Modelo interactivo</span></span><span class="v-modes"><button type="button" data-reset aria-label="Reiniciar vista">↺</button></span></div><span class="v-hint mono"><span data-es="Arrastra para girar · rueda o pellizco para zoom" data-en="Drag to orbit · scroll or pinch to zoom">Arrastra para girar · rueda o pellizco para zoom</span></span></div></div></div>
+    <div class="text">
+      <p data-es="Escenario interior con cama, mobiliario y equipamiento, modelado a escala real." data-en="An interior set with a bed, furniture and equipment, modelled to real-world scale.">Escenario interior con cama, mobiliario y equipamiento, modelado a escala real.</p>
+      <dl class="meta"><dt data-es="Contexto" data-en="Context">Contexto</dt><dd data-es="Escenario de 1.er curso" data-en="1st-year set">Escenario de 1.er curso</dd><dt data-es="Mi papel" data-en="My role">Mi papel</dt><dd data-es="Individual" data-en="Solo">Individual</dd></dl>
+      <ul class="chips"><li>Maya</li><li>Arnold</li></ul>
+      
+    </div>
+  </div>
+</article>
+<article class="witem" id="circuito" data-work="circuito">
+  <header class="wh"><span class="wnum">05</span><div><span class="kind" data-es="Modelado 3D · diorama" data-en="3D modelling · diorama">Modelado 3D · diorama</span><h2 data-es="Curva de circuito de carreras" data-en="Race track corner">Curva de circuito de carreras</h2></div></header>
+  <div class="work">
+    <div class="media"><div class="pair"><figure><img src="img/esc-f1.webp" alt="Render" data-alt-en="Render" loading="lazy"><figcaption data-es="Render" data-en="Render">Render</figcaption></figure><div class="viewer" data-model="models/edificio.js" data-az="35" data-el="30" data-zoom="0.8"><div class="v-stage"></div><div class="v-poster"><img src="img/clay-circuito.webp" alt="" loading="lazy"><button type="button" class="v-load"><span data-es="▶ Ver en 3D" data-en="▶ View in 3D">▶ Ver en 3D</span></button></div><span class="v-badge mono"><span data-es="Modelo 3D · clay" data-en="3D model · clay">Modelo 3D · clay</span></span><div class="v-bar"><span class="mono"><span data-es="Modelo interactivo" data-en="Interactive model">Modelo interactivo</span></span><span class="v-modes"><button type="button" data-reset aria-label="Reiniciar vista">↺</button></span></div><span class="v-hint mono"><span data-es="Arrastra para girar · rueda o pellizco para zoom" data-en="Drag to orbit · scroll or pinch to zoom">Arrastra para girar · rueda o pellizco para zoom</span></span></div></div></div>
+    <div class="text">
+      <p data-es="Diorama de una curva de circuito con grada, vegetación y pantalla gigante." data-en="A diorama of a race track corner with a grandstand, trees and a big screen.">Diorama de una curva de circuito con grada, vegetación y pantalla gigante.</p>
+      <dl class="meta"><dt data-es="Contexto" data-en="Context">Contexto</dt><dd data-es="Escenario de 1.er curso" data-en="1st-year set">Escenario de 1.er curso</dd><dt data-es="Mi papel" data-en="My role">Mi papel</dt><dd data-es="Individual" data-en="Solo">Individual</dd></dl>
+      <ul class="chips"><li>Maya</li><li>Arnold</li></ul>
+      
+    </div>
+  </div>
+</article>
+<article class="witem" id="props" data-work="props">
+  <header class="wh"><span class="wnum">06</span><div><span class="kind" data-es="Props para videojuego" data-en="Game props">Props para videojuego</span><h2 data-es="Juguetes de toda la vida" data-en="Classic toys">Juguetes de toda la vida</h2></div></header>
+  <div class="work">
+    <div class="media"><div class="g g2"><figure class="fit"><img src="img/prop-peonza.webp" alt="Peonza" data-alt-en="Spinning top" loading="lazy"><figcaption data-es="Peonza" data-en="Spinning top">Peonza</figcaption></figure><figure class="fit"><img src="img/prop-golf.webp" alt="Pelota de golf" data-alt-en="Golf ball" loading="lazy"><figcaption data-es="Pelota de golf" data-en="Golf ball">Pelota de golf</figcaption></figure></div></div>
+    <div class="text">
+      <p data-es="Peonza de madera y pelota de golf para un juego de juguetes clásicos: modelado, materiales y exportación a FBX para Unity." data-en="A wooden spinning top and a golf ball for a classic-toys game: modelling, materials and FBX export for Unity.">Peonza de madera y pelota de golf para un juego de juguetes clásicos: modelado, materiales y exportación a FBX para Unity.</p>
+      <dl class="meta"><dt data-es="Contexto" data-en="Context">Contexto</dt><dd data-es="Assets del juego de grupo de Desarrollo de Juegos" data-en="Assets for the group game in the Game Development module">Assets del juego de grupo de Desarrollo de Juegos</dd><dt data-es="Mi papel" data-en="My role">Mi papel</dt><dd data-es="Modelado, materiales y render de los dos props" data-en="Modelling, materials and rendering of both props">Modelado, materiales y render de los dos props</dd></dl>
+      <ul class="chips"><li>Maya</li><li>Arnold</li><li>Blender</li><li>FBX</li></ul>
+      
+    </div>
+  </div>
+</article>
+  <nav class="pnav" aria-label="Categorías"><a href="#cat-animaciones"><span class="mono">← <span data-es="Anterior" data-en="Previous">Anterior</span></span><span data-es="Animaciones" data-en="Animation">Animaciones</span></a><a class="mid" href="#proyectos"><span class="mono"><span data-es="Volver a" data-en="Back to">Volver a</span></span><span data-es="Mis proyectos" data-en="My projects">Mis proyectos</span></a><a class="r" href="#cat-fotomontajes"><span class="mono"><span data-es="Siguiente" data-en="Next">Siguiente</span> →</span><span data-es="Fotomontajes y diseño" data-en="Compositing and design">Fotomontajes y diseño</span></a></nav>
+</section>
+<section class="view" data-view="cat-fotomontajes" hidden>
+  <div class="crumbs mono"><a href="#proyectos"><span data-es="Proyectos" data-en="Projects">Proyectos</span></a> / <span data-es="Fotomontajes y diseño" data-en="Compositing and design">Fotomontajes y diseño</span></div>
+  <header class="vh"><div><span class="mono acc">03 / 06</span><h1 data-es="Fotomontajes y diseño" data-en="Compositing and design">Fotomontajes y diseño</h1></div>
+  <div><p class="lead-s" data-es="Matte paintings, cartelería real y una revista interactiva." data-en="Matte paintings, real-world posters and an interactive magazine.">Matte paintings, cartelería real y una revista interactiva.</p><span class="mono">5 <span data-es="trabajos" data-en="works">trabajos</span></span></div></header>
+  <nav class="jump" aria-label="Trabajos de la categoría"><span class="mono"><span data-es="Ir a" data-en="Jump to">Ir a</span></span><a href="#matte-volcan"><span data-es="Tierra de volcanes" data-en="Land of volcanoes">Tierra de volcanes</span></a><a href="#matte-valle"><span data-es="Valle entre montañas" data-en="Mountain valley">Valle entre montañas</span></a><a href="#matte-castillo"><span data-es="Castillo en la tormenta" data-en="Castle in the storm">Castillo en la tormenta</span></a><a href="#cartel"><span data-es="Voces que viajan" data-en="Voces que viajan">Voces que viajan</span></a><a href="#retroverso"><span data-es="Revista Retroverso" data-en="Retroverso magazine">Revista Retroverso</span></a></nav>
+  
+<article class="witem" id="matte-volcan" data-work="matte-volcan">
+  <header class="wh"><span class="wnum">01</span><div><span class="kind" data-es="Matte painting" data-en="Matte painting">Matte painting</span><h2 data-es="Tierra de volcanes" data-en="Land of volcanoes">Tierra de volcanes</h2></div></header>
+  <div class="work">
+    <div class="media"><div class="g g1"><figure><img src="img/matte-final.webp" alt="Matte painting · volcán" data-alt-en="Matte painting · volcano" loading="lazy"><figcaption data-es="Matte painting · volcán" data-en="Matte painting · volcano">Matte painting · volcán</figcaption></figure></div></div>
+    <div class="text">
+      <p data-es="Paisaje prehistórico con dinosaurios, volcán en erupción, lava y tormenta eléctrica, compuesto a partir de varias fotografías." data-en="A prehistoric landscape with dinosaurs, an erupting volcano, lava and a lightning storm, composited from several photos.">Paisaje prehistórico con dinosaurios, volcán en erupción, lava y tormenta eléctrica, compuesto a partir de varias fotografías.</p>
+      <dl class="meta"><dt data-es="Contexto" data-en="Context">Contexto</dt><dd data-es="Photoshop, 1.er curso" data-en="Photoshop module, 1st year">Photoshop, 1.er curso</dd><dt data-es="Mi papel" data-en="My role">Mi papel</dt><dd data-es="Individual" data-en="Solo">Individual</dd></dl>
+      <ul class="chips"><li>Photoshop</li></ul>
+      
+    </div>
+  </div>
+</article>
+<article class="witem" id="matte-valle" data-work="matte-valle">
+  <header class="wh"><span class="wnum">02</span><div><span class="kind" data-es="Matte painting" data-en="Matte painting">Matte painting</span><h2 data-es="Valle entre montañas" data-en="Mountain valley">Valle entre montañas</h2></div></header>
+  <div class="work">
+    <div class="media"><div class="g g1"><figure><img src="img/matte-boceto.webp" alt="Matte painting · valle" data-alt-en="Matte painting · valley" loading="lazy"><figcaption data-es="Matte painting · valle" data-en="Matte painting · valley">Matte painting · valle</figcaption></figure></div></div>
+    <div class="text">
+      <p data-es="Valle glaciar con río y cielo de tormenta, integrando montañas, nubes y terreno de distintas fotos." data-en="A glacial valley with a river and a stormy sky, blending mountains, clouds and terrain from different photos.">Valle glaciar con río y cielo de tormenta, integrando montañas, nubes y terreno de distintas fotos.</p>
+      <dl class="meta"><dt data-es="Contexto" data-en="Context">Contexto</dt><dd data-es="Photoshop, 1.er curso" data-en="Photoshop module, 1st year">Photoshop, 1.er curso</dd><dt data-es="Mi papel" data-en="My role">Mi papel</dt><dd data-es="Individual" data-en="Solo">Individual</dd></dl>
+      <ul class="chips"><li>Photoshop</li></ul>
+      
+    </div>
+  </div>
+</article>
+<article class="witem" id="matte-castillo" data-work="matte-castillo">
+  <header class="wh"><span class="wnum">03</span><div><span class="kind" data-es="Matte painting" data-en="Matte painting">Matte painting</span><h2 data-es="Castillo en la tormenta" data-en="Castle in the storm">Castillo en la tormenta</h2></div></header>
+  <div class="work">
+    <div class="media"><div class="g g1"><figure><img src="img/matte-castillo.webp" alt="Matte painting · castillo" data-alt-en="Matte painting · castle" loading="lazy"><figcaption data-es="Matte painting · castillo" data-en="Matte painting · castle">Matte painting · castillo</figcaption></figure></div></div>
+    <div class="text">
+      <p data-es="Castillo junto al mar con oleaje y cielo nocturno: integración de luz, color y agua." data-en="A seaside castle with crashing waves and a night sky: integrating light, colour and water.">Castillo junto al mar con oleaje y cielo nocturno: integración de luz, color y agua.</p>
+      <dl class="meta"><dt data-es="Contexto" data-en="Context">Contexto</dt><dd data-es="Photoshop, 1.er curso" data-en="Photoshop module, 1st year">Photoshop, 1.er curso</dd><dt data-es="Mi papel" data-en="My role">Mi papel</dt><dd data-es="Individual" data-en="Solo">Individual</dd></dl>
+      <ul class="chips"><li>Photoshop</li></ul>
+      
+    </div>
+  </div>
+</article>
+<article class="witem" id="cartel" data-work="cartel">
+  <header class="wh"><span class="wnum">04</span><div><span class="kind" data-es="Cartel · prácticas de 1.er curso" data-en="Poster · first-year internship">Cartel · prácticas de 1.er curso</span><h2 data-es="Voces que viajan" data-en="Voces que viajan">Voces que viajan</h2></div></header>
+  <div class="work">
+    <div class="media"><div class="g g2"><figure class="fit"><img src="img/cartel-1.webp" alt="Versión dramática" data-alt-en="Dramatic version" loading="lazy"><figcaption data-es="Versión dramática" data-en="Dramatic version">Versión dramática</figcaption></figure><figure class="fit"><img src="img/cartel-2.webp" alt="Versión color" data-alt-en="Colour version" loading="lazy"><figcaption data-es="Versión color" data-en="Colour version">Versión color</figcaption></figure></div></div>
+    <div class="text">
+      <p data-es="Cartel real para un evento en el centro cívico ZIGIA 28. Hice la sesión de fotos con réflex, el revelado en Capture One y la composición en Photoshop, en dos líneas visuales." data-en="A real poster for an event at the ZIGIA 28 civic centre. I did the photo shoot, Capture One processing and Photoshop layout, in two visual directions.">Cartel real para un evento en el centro cívico ZIGIA 28. Hice la sesión de fotos con réflex, el revelado en Capture One y la composición en Photoshop, en dos líneas visuales.</p>
+      <dl class="meta"><dt data-es="Contexto" data-en="Context">Contexto</dt><dd data-es="Prácticas de 1.er curso" data-en="First-year internship">Prácticas de 1.er curso</dd><dt data-es="Mi papel" data-en="My role">Mi papel</dt><dd data-es="Fotografía, revelado y diseño" data-en="Photography, processing and design">Fotografía, revelado y diseño</dd><dt data-es="Resultado" data-en="Outcome">Resultado</dt><dd data-es="Dos versiones del cartel en A4 a 300 ppp" data-en="Two A4 poster versions at 300 dpi">Dos versiones del cartel en A4 a 300 ppp</dd></dl>
+      <ul class="chips"><li>Photoshop</li><li>Capture One</li><li>Fotografía</li></ul>
+      
+    </div>
+  </div>
+</article>
+<article class="witem" id="retroverso" data-work="retroverso">
+  <header class="wh"><span class="wnum">05</span><div><span class="kind" data-es="Diseño editorial · PDF interactivo" data-en="Editorial design · interactive PDF">Diseño editorial · PDF interactivo</span><h2 data-es="Revista Retroverso" data-en="Retroverso magazine">Revista Retroverso</h2></div></header>
+  <div class="work">
+    <div class="media"><div class="flipbook" data-n="5"><div class="fstage"><div class="fpage" data-p="1"><img src="img/retro-p1.webp" alt="Página 1 de la revista" loading="lazy"><button type="button" class="spot" data-to="2" style="left:77.21%;top:92.66%;width:15.64%;height:2.41%" aria-label="Ir a la página 2"></button><button type="button" class="spot" data-to="3" style="left:58.21%;top:41.66%;width:27.92%;height:8.79%" aria-label="Ir a la página 3"></button><button type="button" class="spot" data-to="4" style="left:8.15%;top:56.85%;width:33.69%;height:8.79%" aria-label="Ir a la página 4"></button><button type="button" class="spot" data-to="5" style="left:7.14%;top:73.07%;width:34.17%;height:8.79%" aria-label="Ir a la página 5"></button><button type="button" class="spot" data-to="2" style="left:58.21%;top:28.42%;width:20.95%;height:8.79%" aria-label="Ir a la página 2"></button></div><div class="fpage" data-p="2" hidden><img src="img/retro-p2.webp" alt="Página 2 de la revista" loading="lazy"><button type="button" class="spot" data-to="1" style="left:82.54%;top:5.13%;width:7.69%;height:2.25%" aria-label="Ir a la página 1"></button><button type="button" class="spot" data-to="3" style="left:78.31%;top:93.43%;width:15.64%;height:2.41%" aria-label="Ir a la página 3"></button><button type="button" class="spot" data-to="1" style="left:6.05%;top:93.43%;width:15.64%;height:2.41%" aria-label="Ir a la página 1"></button></div><div class="fpage" data-p="3" hidden><img src="img/retro-p3.webp" alt="Página 3 de la revista" loading="lazy"><button type="button" class="spot" data-to="2" style="left:6.05%;top:93.43%;width:15.64%;height:2.41%" aria-label="Ir a la página 2"></button><button type="button" class="spot" data-to="4" style="left:78.31%;top:93.46%;width:15.64%;height:2.41%" aria-label="Ir a la página 4"></button><button type="button" class="spot" data-to="1" style="left:78.8%;top:5.57%;width:15.15%;height:1.74%" aria-label="Ir a la página 1"></button></div><div class="fpage" data-p="4" hidden><img src="img/retro-p4.webp" alt="Página 4 de la revista" loading="lazy"><button type="button" class="spot" data-to="1" style="left:82.39%;top:5.2%;width:7.98%;height:2.28%" aria-label="Ir a la página 1"></button><button type="button" class="spot" data-to="5" style="left:78.31%;top:93.43%;width:15.64%;height:2.41%" aria-label="Ir a la página 5"></button><button type="button" class="spot" data-to="3" style="left:6.05%;top:93.43%;width:15.64%;height:2.41%" aria-label="Ir a la página 3"></button></div><div class="fpage" data-p="5" hidden><img src="img/retro-p5.webp" alt="Página 5 de la revista" loading="lazy"><button type="button" class="spot" data-to="1" style="left:82.39%;top:5.27%;width:7.98%;height:2.28%" aria-label="Ir a la página 1"></button><button type="button" class="spot" data-to="4" style="left:6.05%;top:93.43%;width:15.64%;height:2.41%" aria-label="Ir a la página 4"></button></div></div><div class="cbar"><button type="button" class="fprev" aria-label="Anterior">←</button><span class="ccount mono"><span data-es="Página" data-en="Page">Página</span> <b>1</b> / 5</span><button type="button" class="fnext" aria-label="Siguiente">→</button><button type="button" class="fhome mono"><span data-es="Índice" data-en="Contents">Índice</span></button><label class="fshow mono"><input type="checkbox" checked> <span data-es="Mostrar botones" data-en="Show buttons">Mostrar botones</span></label></div></div></div>
+    <div class="text">
+      <p data-es="Revista interactiva maquetada en InDesign: portada con índice y cuatro artículos, cada uno con su propia línea gráfica. Los botones funcionan igual que en el PDF: pulsa el índice o las flechas de cada página." data-en="An interactive magazine laid out in InDesign: a cover with a contents menu and four articles, each with its own graphic style. The buttons work just like in the PDF: tap the contents or each page&#x27;s arrows.">Revista interactiva maquetada en InDesign: portada con índice y cuatro artículos, cada uno con su propia línea gráfica. Los botones funcionan igual que en el PDF: pulsa el índice o las flechas de cada página.</p>
+      <dl class="meta"><dt data-es="Contexto" data-en="Context">Contexto</dt><dd data-es="Ejercicio de maquetación interactiva" data-en="Interactive layout exercise">Ejercicio de maquetación interactiva</dd><dt data-es="Mi papel" data-en="My role">Mi papel</dt><dd data-es="Individual" data-en="Solo">Individual</dd><dt data-es="Resultado" data-en="Outcome">Resultado</dt><dd data-es="PDF interactivo de 5 páginas con navegación por botones" data-en="5-page interactive PDF with button navigation">PDF interactivo de 5 páginas con navegación por botones</dd></dl>
+      <ul class="chips"><li>InDesign</li><li>Photoshop</li></ul>
+      
+    </div>
+  </div>
+</article>
+  <nav class="pnav" aria-label="Categorías"><a href="#cat-modelados"><span class="mono">← <span data-es="Anterior" data-en="Previous">Anterior</span></span><span data-es="Modelados" data-en="Modelling">Modelados</span></a><a class="mid" href="#proyectos"><span class="mono"><span data-es="Volver a" data-en="Back to">Volver a</span></span><span data-es="Mis proyectos" data-en="My projects">Mis proyectos</span></a><a class="r" href="#cat-texturizados"><span class="mono"><span data-es="Siguiente" data-en="Next">Siguiente</span> →</span><span data-es="Texturizados" data-en="Texturing">Texturizados</span></a></nav>
+</section>
+<section class="view" data-view="cat-texturizados" hidden>
+  <div class="crumbs mono"><a href="#proyectos"><span data-es="Proyectos" data-en="Projects">Proyectos</span></a> / <span data-es="Texturizados" data-en="Texturing">Texturizados</span></div>
+  <header class="vh"><div><span class="mono acc">04 / 06</span><h1 data-es="Texturizados" data-en="Texturing">Texturizados</h1></div>
+  <div><p class="lead-s" data-es="Pelo con XGen y texturizado de objetos y personajes." data-en="Hair with XGen and texturing of props and characters.">Pelo con XGen y texturizado de objetos y personajes.</p><span class="mono">3 <span data-es="trabajos" data-en="works">trabajos</span></span></div></header>
+  <nav class="jump" aria-label="Trabajos de la categoría"><span class="mono"><span data-es="Ir a" data-en="Jump to">Ir a</span></span><a href="#grooming"><span data-es="Pelo y barba con XGen" data-en="Hair and beard in XGen">Pelo y barba con XGen</span></a><a href="#pistola"><span data-es="Pistola de juguete" data-en="Toy gun">Pistola de juguete</span></a><a href="#raton"><span data-es="Ratón minion" data-en="Minion mouse">Ratón minion</span></a></nav>
+  
+<article class="witem" id="grooming" data-work="grooming">
+  <header class="wh"><span class="wnum">01</span><div><span class="kind" data-es="Grooming" data-en="Grooming">Grooming</span><h2 data-es="Pelo y barba con XGen" data-en="Hair and beard in XGen">Pelo y barba con XGen</h2></div></header>
+  <div class="work">
+    <div class="media"><div class="g g2"><figure class="fit"><img src="img/pelo-frente.webp" alt="Frente" data-alt-en="Front" loading="lazy"><figcaption data-es="Frente" data-en="Front">Frente</figcaption></figure><figure class="fit"><img src="img/pelo-lado.webp" alt="Perfil" data-alt-en="Profile" loading="lazy"><figcaption data-es="Perfil" data-en="Profile">Perfil</figcaption></figure><figure class="fit"><img src="img/pelo-lado2.webp" alt="Perfil opuesto" data-alt-en="Other side" loading="lazy"><figcaption data-es="Perfil opuesto" data-en="Other side">Perfil opuesto</figcaption></figure><figure class="fit"><img src="img/pelo-atras.webp" alt="Espalda" data-alt-en="Back" loading="lazy"><figcaption data-es="Espalda" data-en="Back">Espalda</figcaption></figure></div></div>
+    <div class="text">
+      <p data-es="Peinado y barba con guías y modificadores, revisados en cuatro vistas para controlar volumen, densidad y caída." data-en="Hair and beard built with guides and modifiers, checked from four angles for volume, density and flow.">Peinado y barba con guías y modificadores, revisados en cuatro vistas para controlar volumen, densidad y caída.</p>
+      <dl class="meta"><dt data-es="Contexto" data-en="Context">Contexto</dt><dd data-es="Ejercicio de 1.er curso" data-en="1st-year exercise">Ejercicio de 1.er curso</dd><dt data-es="Mi papel" data-en="My role">Mi papel</dt><dd data-es="Individual" data-en="Solo">Individual</dd></dl>
+      <ul class="chips"><li>Maya</li><li>XGen</li><li>Arnold</li></ul>
+      
+    </div>
+  </div>
+</article>
+<article class="witem" id="pistola" data-work="pistola">
+  <header class="wh"><span class="wnum">02</span><div><span class="kind" data-es="Texturizado" data-en="Texturing">Texturizado</span><h2 data-es="Pistola de juguete" data-en="Toy gun">Pistola de juguete</h2></div></header>
+  <div class="work">
+    <div class="media"><div class="g g1"><figure class="loop"><video autoplay muted loop playsinline preload="metadata" poster="img/poster-tex-pistola.webp"><source src="media/tex-pistola.mp4" type="video/mp4"></video><figcaption data-es="Giro de 360°" data-en="360° turntable">Giro de 360°</figcaption></figure></div></div>
+    <div class="text">
+      <p data-es="Texturizado de una pistola de juguete con colores saturados, revisado en un giro de 360°." data-en="Texturing of a toy gun in saturated colours, reviewed in a 360° turntable.">Texturizado de una pistola de juguete con colores saturados, revisado en un giro de 360°.</p>
+      <dl class="meta"><dt data-es="Contexto" data-en="Context">Contexto</dt><dd data-es="Ejercicio de texturizado" data-en="Texturing exercise">Ejercicio de texturizado</dd><dt data-es="Mi papel" data-en="My role">Mi papel</dt><dd data-es="Individual" data-en="Solo">Individual</dd></dl>
+      <ul class="chips"><li>Maya</li><li>Arnold</li><li>Photoshop</li></ul>
+      
+    </div>
+  </div>
+</article>
+<article class="witem" id="raton" data-work="raton">
+  <header class="wh"><span class="wnum">03</span><div><span class="kind" data-es="Texturizado" data-en="Texturing">Texturizado</span><h2 data-es="Ratón minion" data-en="Minion mouse">Ratón minion</h2></div></header>
+  <div class="work">
+    <div class="media"><div class="g g1"><figure class="loop"><video autoplay muted loop playsinline preload="metadata" poster="img/poster-tex-raton.webp"><source src="media/tex-raton.mp4" type="video/mp4"></video><figcaption data-es="Giro de 360°" data-en="360° turntable">Giro de 360°</figcaption></figure></div></div>
+    <div class="text">
+      <p data-es="Texturizado de un personaje de ratón con estética minion, presentado en un giro sobre fondo fotográfico." data-en="Texturing of a mouse character with a minion look, shown in a turntable over a photo background.">Texturizado de un personaje de ratón con estética minion, presentado en un giro sobre fondo fotográfico.</p>
+      <dl class="meta"><dt data-es="Contexto" data-en="Context">Contexto</dt><dd data-es="Ejercicio de texturizado" data-en="Texturing exercise">Ejercicio de texturizado</dd><dt data-es="Mi papel" data-en="My role">Mi papel</dt><dd data-es="Individual" data-en="Solo">Individual</dd></dl>
+      <ul class="chips"><li>Maya</li><li>Arnold</li><li>Photoshop</li></ul>
+      
+    </div>
+  </div>
+</article>
+  <nav class="pnav" aria-label="Categorías"><a href="#cat-fotomontajes"><span class="mono">← <span data-es="Anterior" data-en="Previous">Anterior</span></span><span data-es="Fotomontajes y diseño" data-en="Compositing and design">Fotomontajes y diseño</span></a><a class="mid" href="#proyectos"><span class="mono"><span data-es="Volver a" data-en="Back to">Volver a</span></span><span data-es="Mis proyectos" data-en="My projects">Mis proyectos</span></a><a class="r" href="#cat-videojuegos"><span class="mono"><span data-es="Siguiente" data-en="Next">Siguiente</span> →</span><span data-es="Videojuegos" data-en="Video games">Videojuegos</span></a></nav>
+</section>
+<section class="view" data-view="cat-videojuegos" hidden>
+  <div class="crumbs mono"><a href="#proyectos"><span data-es="Proyectos" data-en="Projects">Proyectos</span></a> / <span data-es="Videojuegos" data-en="Video games">Videojuegos</span></div>
+  <header class="vh"><div><span class="mono acc">05 / 06</span><h1 data-es="Videojuegos" data-en="Video games">Videojuegos</h1></div>
+  <div><p class="lead-s" data-es="Juegos móviles en Unity, uno ya publicado en Google Play." data-en="Mobile games in Unity, one already live on Google Play.">Juegos móviles en Unity, uno ya publicado en Google Play.</p><span class="mono">2 <span data-es="trabajos" data-en="works">trabajos</span></span></div></header>
+  <nav class="jump" aria-label="Trabajos de la categoría"><span class="mono"><span data-es="Ir a" data-en="Jump to">Ir a</span></span><a href="#tres-en-ruta"><span data-es="Tres en Ruta" data-en="Tres en Ruta">Tres en Ruta</span></a><a href="#hordas"><span data-es="Hordas de Runa" data-en="Hordas de Runa">Hordas de Runa</span></a></nav>
+  
+<article class="witem" id="tres-en-ruta" data-work="tres-en-ruta">
+  <header class="wh"><span class="wnum">01</span><div><span class="kind" data-es="Juego móvil · publicado en Google Play" data-en="Mobile game · live on Google Play">Juego móvil · publicado en Google Play</span><h2 data-es="Tres en Ruta" data-en="Tres en Ruta">Tres en Ruta</h2></div></header>
+  <div class="work">
+    <div class="media"><figure><img src="img/ter-1.webp" alt="Nivel 1-5 · en juego" data-alt-en="Level 1-5 · gameplay" loading="lazy"><figcaption data-es="Nivel 1-5 · en juego" data-en="Level 1-5 · gameplay">Nivel 1-5 · en juego</figcaption></figure><div class="g g3"><figure class="fit"><img src="img/ter-2.webp" alt="Menú" data-alt-en="Menu" loading="lazy"><figcaption data-es="Menú" data-en="Menu">Menú</figcaption></figure><figure class="fit"><img src="img/ter-3.webp" alt="Mundos" data-alt-en="Worlds" loading="lazy"><figcaption data-es="Mundos" data-en="Worlds">Mundos</figcaption></figure><figure class="fit"><img src="img/ter-4.webp" alt="Equipo y skins" data-alt-en="Team and skins" loading="lazy"><figcaption data-es="Equipo y skins" data-en="Team and skins">Equipo y skins</figcaption></figure></div></div>
+    <div class="text">
+      <p data-es="Un puzle en el que no controlas a nadie: mueves puentes y plataformas para que tres corredores lleguen juntos a la meta." data-en="A puzzle game where you control no one: you move bridges and platforms so three runners reach the goal together.">Un puzle en el que no controlas a nadie: mueves puentes y plataformas para que tres corredores lleguen juntos a la meta.</p>
+      <dl class="meta"><dt data-es="Contexto" data-en="Context">Contexto</dt><dd data-es="Proyecto personal en Unity, de prototipo a publicación" data-en="Personal Unity project, from prototype to release">Proyecto personal en Unity, de prototipo a publicación</dd><dt data-es="Mi papel" data-en="My role">Mi papel</dt><dd data-es="Diseño, desarrollo, arte 3D, interfaz y publicación" data-en="Design, development, 3D art, UI and publishing">Diseño, desarrollo, arte 3D, interfaz y publicación</dd><dt data-es="Proceso" data-en="Process">Proceso</dt><dd data-es="5 mundos de 5 niveles, una mecánica nueva por nivel, comodines y tienda de skins" data-en="5 worlds of 5 levels, one new mechanic per level, power-ups and a skin shop">5 mundos de 5 niveles, una mecánica nueva por nivel, comodines y tienda de skins</dd><dt data-es="Resultado" data-en="Outcome">Resultado</dt><dd data-es="Publicado tras el test cerrado, con anuncios recompensados opcionales" data-en="Released after closed testing, with opt-in rewarded ads">Publicado tras el test cerrado, con anuncios recompensados opcionales</dd></dl>
+      <ul class="chips"><li>Unity</li><li>C#</li><li>Blender</li><li>LevelPlay</li></ul>
+      <a class="link" href="https://play.google.com/store/apps/details?id=com.alberto.tresenruta" target="_blank" rel="noopener"><span data-es="Ver en Google Play" data-en="View on Google Play">Ver en Google Play</span> ↗</a>
+    </div>
+  </div>
+</article>
+<article class="witem pending" id="hordas" data-work="hordas">
+  <header class="wh"><span class="wnum">02</span><div><span class="kind" data-es="Juego móvil · proyecto intermodular" data-en="Mobile game · cross-module project">Juego móvil · proyecto intermodular</span><h2 data-es="Hordas de Runa" data-en="Hordas de Runa">Hordas de Runa</h2></div><span class="flag-in mono"><span data-es="En desarrollo · TFG" data-en="In progress · final project">En desarrollo · TFG</span></span></header>
+  <div class="pend"><div class="pend-img"><img src="img/hdr-1.webp" alt="" loading="lazy"><span class="mono"><span data-es="Próximamente" data-en="Coming soon">Próximamente</span></span></div>
+  <div class="text"><p data-es="Es mi trabajo de fin de grado, junto a Ibai García Vázquez. Lo estoy mejorando y lo publicaré aquí cuando esté terminado." data-en="This is my final-year project, with Ibai García Vázquez. I&#x27;m still improving it and will publish it here once it&#x27;s finished.">Es mi trabajo de fin de grado, junto a Ibai García Vázquez. Lo estoy mejorando y lo publicaré aquí cuando esté terminado.</p><ul class="chips"><li>Unity</li><li>C#</li><li>Low poly</li><li>Android</li></ul></div></div>
+</article>
+  <nav class="pnav" aria-label="Categorías"><a href="#cat-texturizados"><span class="mono">← <span data-es="Anterior" data-en="Previous">Anterior</span></span><span data-es="Texturizados" data-en="Texturing">Texturizados</span></a><a class="mid" href="#proyectos"><span class="mono"><span data-es="Volver a" data-en="Back to">Volver a</span></span><span data-es="Mis proyectos" data-en="My projects">Mis proyectos</span></a><a class="r" href="#cat-cine"><span class="mono"><span data-es="Siguiente" data-en="Next">Siguiente</span> →</span><span data-es="Cine y vídeo" data-en="Film and video">Cine y vídeo</span></a></nav>
+</section>
+<section class="view" data-view="cat-cine" hidden>
+  <div class="crumbs mono"><a href="#proyectos"><span data-es="Proyectos" data-en="Projects">Proyectos</span></a> / <span data-es="Cine y vídeo" data-en="Film and video">Cine y vídeo</span></div>
+  <header class="vh"><div><span class="mono acc">06 / 06</span><h1 data-es="Cine y vídeo" data-en="Film and video">Cine y vídeo</h1></div>
+  <div><p class="lead-s" data-es="Anuncio 3D y cortometraje stop motion." data-en="A 3D commercial and a stop-motion short.">Anuncio 3D y cortometraje stop motion.</p><span class="mono">2 <span data-es="trabajos" data-en="works">trabajos</span></span></div></header>
+  <nav class="jump" aria-label="Trabajos de la categoría"><span class="mono"><span data-es="Ir a" data-en="Jump to">Ir a</span></span><a href="#strike"><span data-es="STRIKE, the smart football" data-en="STRIKE, the smart football">STRIKE, the smart football</span></a><a href="#navidad"><span data-es="Una Navidad Explosiva" data-en="Una Navidad Explosiva">Una Navidad Explosiva</span></a></nav>
+  
+<article class="witem" id="strike" data-work="strike">
+  <header class="wh"><span class="wnum">01</span><div><span class="kind" data-es="Anuncio 3D · 2:48" data-en="3D commercial · 2:48">Anuncio 3D · 2:48</span><h2 data-es="STRIKE, the smart football" data-en="STRIKE, the smart football">STRIKE, the smart football</h2></div></header>
+  <div class="work">
+    <div class="media"><div class="play"><video controls preload="none" playsinline poster="img/poster-strike.webp"><source src="media/strike.mp4" type="video/mp4"></video></div><div class="g g4"><figure class="fit"><img src="img/str-app.webp" alt="App del balón" data-alt-en="Ball app" loading="lazy"><figcaption data-es="App del balón" data-en="Ball app">App del balón</figcaption></figure><figure class="fit"><img src="img/str-velocidad.webp" alt="Datos de tiro" data-alt-en="Shot data" loading="lazy"><figcaption data-es="Datos de tiro" data-en="Shot data">Datos de tiro</figcaption></figure><figure class="fit"><img src="img/str-gol.webp" alt="El gol" data-alt-en="The goal" loading="lazy"><figcaption data-es="El gol" data-en="The goal">El gol</figcaption></figure><figure class="fit"><img src="img/str-escudo.webp" alt="Aston Birras" data-alt-en="Aston Birras" loading="lazy"><figcaption data-es="Aston Birras" data-en="Aston Birras">Aston Birras</figcaption></figure></div></div>
+    <div class="text">
+      <p data-es="Spot de un balón inteligente inventado, contado desde mi equipo real de fútbol 7, el Aston Birras, que no dejaba de fallar. Todo en 3D y con mi propia voz en off en inglés." data-en="A commercial for a made-up smart football, told through my real 7-a-side team, Aston Birras, who just couldn&#x27;t stop missing. Fully 3D, with my own English voiceover.">Spot de un balón inteligente inventado, contado desde mi equipo real de fútbol 7, el Aston Birras, que no dejaba de fallar. Todo en 3D y con mi propia voz en off en inglés.</p>
+      <dl class="meta"><dt data-es="Contexto" data-en="Context">Contexto</dt><dd data-es="Proyecto individual de Inglés, mínimo 2 minutos" data-en="Individual English-class project, 2 minutes minimum">Proyecto individual de Inglés, mínimo 2 minutos</dd><dt data-es="Mi papel" data-en="My role">Mi papel</dt><dd data-es="Guion adaptado, 3D, animación, render, voz y montaje" data-en="Adapted script, 3D, animation, rendering, voiceover and edit">Guion adaptado, 3D, animación, render, voz y montaje</dd><dt data-es="Proceso" data-en="Process">Proceso</dt><dd data-es="Escenas en Blender, locución grabada aparte y montaje con sonido en DaVinci Resolve" data-en="Scenes in Blender, voiceover recorded separately, edit and sound in DaVinci Resolve">Escenas en Blender, locución grabada aparte y montaje con sonido en DaVinci Resolve</dd><dt data-es="Resultado" data-en="Outcome">Resultado</dt><dd data-es="Spot de 2:48 subtitulado en inglés" data-en="2:48 spot with English subtitles">Spot de 2:48 subtitulado en inglés</dd></dl>
+      <ul class="chips"><li>Blender</li><li>DaVinci Resolve</li><li>Locución EN</li></ul>
+      
+    </div>
+  </div>
+</article>
+<article class="witem" id="navidad" data-work="navidad">
+  <header class="wh"><span class="wnum">02</span><div><span class="kind" data-es="Cortometraje stop motion · en grupo" data-en="Stop-motion short · group project">Cortometraje stop motion · en grupo</span><h2 data-es="Una Navidad Explosiva" data-en="Una Navidad Explosiva">Una Navidad Explosiva</h2></div><span class="flag-in mono"><span data-es="Trabajo en grupo" data-en="Group project">Trabajo en grupo</span></span></header>
+  <div class="work">
+    <div class="media"><div class="play"><video controls preload="none" playsinline poster="img/poster-navidad.webp"><source src="media/navidad.mp4" type="video/mp4"></video></div><div class="g g3"><figure class="fit"><img src="img/nav-sofa.webp" alt="Personaje" data-alt-en="Character" loading="lazy"><figcaption data-es="Personaje" data-en="Character">Personaje</figcaption></figure><figure class="fit"><img src="img/nav-arbol.webp" alt="Bosque nevado" data-alt-en="Snowy forest" loading="lazy"><figcaption data-es="Bosque nevado" data-en="Snowy forest">Bosque nevado</figcaption></figure><figure class="fit"><img src="img/nav-monstruo.webp" alt="Interior" data-alt-en="Interior" loading="lazy"><figcaption data-es="Interior" data-en="Interior">Interior</figcaption></figure></div></div>
+    <div class="text">
+      <p data-es="Corto de plastilina rodado sobre una maqueta propia: una casa nevada, un bosque de árboles retorcidos y un personaje azul al que la noche se le complica." data-en="A clay short shot on a handmade set: a snowy house, a forest of twisted trees and a blue clay character whose night takes a turn.">Corto de plastilina rodado sobre una maqueta propia: una casa nevada, un bosque de árboles retorcidos y un personaje azul al que la noche se le complica.</p>
+      <dl class="meta"><dt data-es="Contexto" data-en="Context">Contexto</dt><dd data-es="Trabajo en grupo de seis personas" data-en="Six-person group project">Trabajo en grupo de seis personas</dd><dt data-es="Mi papel" data-en="My role">Mi papel</dt><dd data-es="Guion y desarrollo narrativo (con Álvaro Mora). Supervisión creativa y producción ejecutiva (con Matías)" data-en="Script and story development (with Álvaro Mora). Creative supervision and executive production (with Matías)">Guion y desarrollo narrativo (con Álvaro Mora). Supervisión creativa y producción ejecutiva (con Matías)</dd><dt data-es="Proceso" data-en="Process">Proceso</dt><dd data-es="Maqueta, personajes, rodaje fotograma a fotograma y postproducción" data-en="Set build, characters, frame-by-frame shoot and post-production">Maqueta, personajes, rodaje fotograma a fotograma y postproducción</dd><dt data-es="Resultado" data-en="Outcome">Resultado</dt><dd data-es="Cortometraje de 1:44 con créditos" data-en="1:44 short with credits">Cortometraje de 1:44 con créditos</dd></dl>
+      <ul class="chips"><li>Stop motion</li><li>Plastilina</li><li>Postproducción</li></ul>
+      
+    </div>
+  </div>
+</article>
+  <nav class="pnav" aria-label="Categorías"><a href="#cat-videojuegos"><span class="mono">← <span data-es="Anterior" data-en="Previous">Anterior</span></span><span data-es="Videojuegos" data-en="Video games">Videojuegos</span></a><a class="mid" href="#proyectos"><span class="mono"><span data-es="Volver a" data-en="Back to">Volver a</span></span><span data-es="Mis proyectos" data-en="My projects">Mis proyectos</span></a><span></span></nav>
+</section>
+<section class="view" data-view="sobre-mi" hidden>
+  <header class="vh"><div><span class="mono acc"><span data-es="Sobre mí" data-en="About me">Sobre mí</span></span><h1 data-es="Sobre mí" data-en="About me">Sobre mí</h1></div>
+  <div><p class="role" data-es="Artista 3D generalista" data-en="3D Generalist">Artista 3D generalista</p><span class="mono"><span data-es="Madrid · Disponible para prácticas" data-en="Madrid, Spain · Available for an internship">Madrid · Disponible para prácticas</span></span></div></header>
+
+  <div class="asec"><div class="subh"><span class="mono acc">01</span><h2 data-es="Biografía" data-en="Biography">Biografía</h2></div>
+    <div class="bio">
+      <div class="avatar" aria-hidden="true"><span>AJ</span></div>
+      <div class="bio-txt">
+        <dl class="bio-data"><dt><span data-es="Nombre" data-en="Name">Nombre</span></dt><dd>Alberto Jerónimo Andrades</dd><dt><span data-es="Edad" data-en="Age">Edad</span></dt><dd><span data-es="20 años" data-en="20 years old">20 años</span></dd>
+        <dt><span data-es="Estudios" data-en="Studies">Estudios</span></dt><dd><span data-es="CFGS Animaciones 3D, Juegos y Entornos Interactivos · 2.º curso" data-en="Higher VET Diploma in 3D Animation, Games and Interactive Environments · 2nd year">CFGS Animaciones 3D, Juegos y Entornos Interactivos · 2.º curso</span></dd><dt><span data-es="Ubicación" data-en="Location">Ubicación</span></dt><dd><span data-es="Velilla de San Antonio · Madrid" data-en="Velilla de San Antonio · Madrid, Spain">Velilla de San Antonio · Madrid</span></dd></dl>
+        <p class="lead" data-es="Soy estudiante de 2.º del ciclo de Animaciones 3D, Juegos y Entornos Interactivos, con interés en el modelado, el texturizado, la iluminación y la animación. Trabajo sobre todo en Maya y Blender, y desarrollo juegos en Unity." data-en="I&#x27;m a second-year student of 3D Animation, Games and Interactive Environments, interested in modelling, texturing, lighting and animation. I work mainly in Maya and Blender, and I build games in Unity.">Soy estudiante de 2.º del ciclo de Animaciones 3D, Juegos y Entornos Interactivos, con interés en el modelado, el texturizado, la iluminación y la animación. Trabajo sobre todo en Maya y Blender, y desarrollo juegos en Unity.</p>
+        <p class="how" data-es="Me interesa especialmente el proceso completo de creación 3D, desde el boceto y el modelado hasta el render final. Uso la IA en mi día a día, sobre todo Claude, para programar, documentar y organizar mis proyectos. Así he sacado adelante Tres en Ruta, mi primer juego publicado en Google Play." data-en="I&#x27;m especially interested in the full 3D pipeline, from sketch and modelling to the final render. I use AI every day, especially Claude, to code, document and organise my projects. That&#x27;s how I shipped Tres en Ruta, my first game on Google Play.">Me interesa especialmente el proceso completo de creación 3D, desde el boceto y el modelado hasta el render final. Uso la IA en mi día a día, sobre todo Claude, para programar, documentar y organizar mis proyectos. Así he sacado adelante Tres en Ruta, mi primer juego publicado en Google Play.</p>
+      </div>
+    </div>
+    <ul class="strengths"><li><h3 data-es="Proyectos completos" data-en="End-to-end projects">Proyectos completos</h3><p data-es="Del boceto al render final y de la idea al juego publicado." data-en="From sketch to final render, from idea to a published game.">Del boceto al render final y de la idea al juego publicado.</p></li><li><h3 data-es="Un juego en la tienda" data-en="A game in the store">Un juego en la tienda</h3><p data-es="Tres en Ruta pasó el test cerrado de Google Play y está publicado." data-en="Tres en Ruta passed Google Play closed testing and is live.">Tres en Ruta pasó el test cerrado de Google Play y está publicado.</p></li><li><h3 data-es="3D, vídeo, código e IA" data-en="3D, video, code and AI">3D, vídeo, código e IA</h3><p data-es="Maya, Blender, Unity y DaVinci Resolve, y uso la IA a diario, sobre todo Claude." data-en="Maya, Blender, Unity and DaVinci Resolve, and I use AI daily, especially Claude.">Maya, Blender, Unity y DaVinci Resolve, y uso la IA a diario, sobre todo Claude.</p></li><li><h3 data-es="Inglés de trabajo" data-en="Working English">Inglés de trabajo</h3><p data-es="Nivel B1 y locución propia en inglés en el anuncio STRIKE." data-en="B1 level, and my own English voiceover in the STRIKE commercial.">Nivel B1 y locución propia en inglés en el anuncio STRIKE.</p></li></ul>
+  </div>
+
+  <div class="asec"><div class="subh"><span class="mono acc">02</span><h2 data-es="Currículum" data-en="CV">Currículum</h2></div>
+    <div class="cvbox"><div><p data-es="Formación, experiencia, idiomas y herramientas en una sola página." data-en="Education, experience, languages and tools on a single page.">Formación, experiencia, idiomas y herramientas en una sola página.</p></div>
+    <a class="btn primary" href="#curriculum"><span data-es="Ver mi currículum" data-en="View my CV">Ver mi currículum</span> →</a></div>
+  </div>
+
+  <div class="asec"><div class="subh"><span class="mono acc">03</span><h2 data-es="Habilidades" data-en="Skills">Habilidades</h2></div>
+    <ul class="skillchips"><li>Maya</li><li>Arnold</li><li>XGen</li><li>Blender</li><li>Unity</li><li>C#</li><li>Photoshop</li><li>After Effects</li><li>Premiere Pro</li><li>DaVinci Resolve</li><li>InDesign</li><li>Capture One</li><li>Bambu Studio</li><li>Claude (IA)</li></ul>
+    <div class="skills-grid three"><div><h3 class="mono" data-es="Técnicas" data-en="Technical">Técnicas</h3><ul><li><span data-es="Modelado 3D" data-en="3D modelling">Modelado 3D</span></li><li><span data-es="Texturizado y shading" data-en="Texturing and shading">Texturizado y shading</span></li><li><span data-es="Iluminación y render con Arnold" data-en="Lighting and rendering in Arnold">Iluminación y render con Arnold</span></li><li><span data-es="Grooming con XGen" data-en="Grooming with XGen">Grooming con XGen</span></li><li><span data-es="Posado y animación" data-en="Posing and animation">Posado y animación</span></li><li><span data-es="Desarrollo en Unity con C#" data-en="Unity development in C#">Desarrollo en Unity con C#</span></li><li><span data-es="Preparación para impresión 3D" data-en="3D print preparation">Preparación para impresión 3D</span></li><li><span data-es="Uso de IA en el flujo de trabajo, sobre todo Claude" data-en="AI in my workflow, especially Claude">Uso de IA en el flujo de trabajo, sobre todo Claude</span></li></ul></div><div><h3 class="mono" data-es="Creativas" data-en="Creative">Creativas</h3><ul><li><span data-es="Dirección de arte y ambientación" data-en="Art direction and set dressing">Dirección de arte y ambientación</span></li><li><span data-es="Guion y desarrollo narrativo" data-en="Script and story development">Guion y desarrollo narrativo</span></li><li><span data-es="Stop motion" data-en="Stop motion">Stop motion</span></li><li><span data-es="Edición y postproducción de vídeo" data-en="Video editing and post-production">Edición y postproducción de vídeo</span></li><li><span data-es="Fotografía" data-en="Photography">Fotografía</span></li><li><span data-es="Cartelería y maquetación" data-en="Posters and layout">Cartelería y maquetación</span></li></ul></div><div><h3 class="mono" data-es="Especialización" data-en="Focus areas">Especialización</h3><ul><li><span data-es="Personaje y entorno 3D" data-en="3D character and environment">Personaje y entorno 3D</span></li><li><span data-es="Cine y animación" data-en="Film and animation">Cine y animación</span></li><li><span data-es="Videojuegos" data-en="Video games">Videojuegos</span></li></ul></div></div>
+  </div>
+
+  <div class="asec"><div class="subh"><span class="mono acc">04</span><h2 data-es="Formación y experiencia" data-en="Education and experience">Formación y experiencia</h2></div>
+    <div class="edu-grid"><div><h3 class="mono acc" data-es="Experiencia" data-en="Experience">Experiencia</h3><ul class="tl"><li><span class="mono">2026</span><div><h3 data-es="Prácticas de 1.er curso" data-en="First-year internship">Prácticas de 1.er curso</h3><p data-es="Diseño del cartel «Voces que viajan» para un evento en el centro cívico ZIGIA 28: sesión de fotos, revelado en Capture One y composición en Photoshop." data-en="Designed the «Voces que viajan» poster for an event at the ZIGIA 28 civic centre: photo shoot, Capture One processing and Photoshop layout.">Diseño del cartel «Voces que viajan» para un evento en el centro cívico ZIGIA 28: sesión de fotos, revelado en Capture One y composición en Photoshop.</p></div></li></ul></div><div><h3 class="mono acc" data-es="Formación" data-en="Education">Formación</h3><ul class="tl"><li><span class="mono">2025 – 2027</span><div><h3 data-es="CFGS Animaciones 3D, Juegos y Entornos Interactivos" data-en="Higher VET Diploma in 3D Animation, Games and Interactive Environments">CFGS Animaciones 3D, Juegos y Entornos Interactivos</h3><p data-es="IFP Carlos María Rodríguez de Valcárcel · en curso, 2.º año" data-en="IFP Carlos María Rodríguez de Valcárcel · in progress, 2nd year">IFP Carlos María Rodríguez de Valcárcel · en curso, 2.º año</p></div></li><li><span class="mono">2026</span><div><h3 data-es="Curso de Desarrollo con IA" data-en="AI-assisted Development course">Curso de Desarrollo con IA</h3><p data-es="MoureDev × BIG school · 4 horas" data-en="MoureDev × BIG school · 4 hours">MoureDev × BIG school · 4 horas</p></div></li><li><span class="mono">2023</span><div><h3 data-es="Inglés B1" data-en="English B1">Inglés B1</h3><p data-es="Escuela Oficial de Idiomas" data-en="Official School of Languages (EOI)">Escuela Oficial de Idiomas</p></div></li><li><span class="mono">2023</span><div><h3 data-es="Bachillerato de Ciencias (Ingeniería)" data-en="Science Baccalaureate (Engineering)">Bachillerato de Ciencias (Ingeniería)</h3><p data-es="IES Ana María Matute, Velilla de San Antonio" data-en="IES Ana María Matute, Velilla de San Antonio">IES Ana María Matute, Velilla de San Antonio</p></div></li></ul></div></div>
+  </div>
+
+  <div class="asec"><div class="subh"><span class="mono acc">05</span><h2 data-es="Objetivos profesionales" data-en="Career goals">Objetivos profesionales</h2></div>
+    <ol class="goals"><li><p data-es="Mi objetivo es desarrollarme profesionalmente en el diseño y la animación 3D, en proyectos donde pueda aplicar tanto habilidades técnicas como creativas." data-en="My goal is to grow professionally in 3D design and animation, on projects where I can apply both technical and creative skills.">Mi objetivo es desarrollarme profesionalmente en el diseño y la animación 3D, en proyectos donde pueda aplicar tanto habilidades técnicas como creativas.</p></li><li><p data-es="Quiero seguir dominando herramientas profesionales y crear contenido optimizado para entornos digitales e interactivos." data-en="I want to keep mastering professional tools and creating content optimised for digital and interactive environments.">Quiero seguir dominando herramientas profesionales y crear contenido optimizado para entornos digitales e interactivos.</p></li><li><p data-es="A corto plazo, quiero aprender en unas prácticas en cine, videojuegos o edición y ampliar mi portfolio con proyectos de más calidad visual y técnica." data-en="In the short term, I want to learn through an internship in film, games or video editing and grow my portfolio with stronger visual and technical work.">A corto plazo, quiero aprender en unas prácticas en cine, videojuegos o edición y ampliar mi portfolio con proyectos de más calidad visual y técnica.</p></li><li><p data-es="A largo plazo, mi objetivo es formar parte de un equipo creativo en la industria del 3D, los videojuegos o la animación." data-en="In the long term, my goal is to join a creative team in the 3D, games or animation industry.">A largo plazo, mi objetivo es formar parte de un equipo creativo en la industria del 3D, los videojuegos o la animación.</p></li></ol>
+  </div>
+</section>
+<section class="view" data-view="curriculum" hidden>
+  <div class="crumbs mono"><a href="#sobre-mi"><span data-es="Sobre mí" data-en="About me">Sobre mí</span></a> / <span data-es="Currículum" data-en="CV">Currículum</span></div>
+  <div class="cvpdf">
+    <a class="cvpdf-img" href="CV_Alberto_Jeronimo_Andrades.pdf" download="CV_Alberto_Jeronimo_Andrades.pdf" data-cvdl><img src="img/cv-preview.webp" alt="CV de Alberto Jerónimo Andrades en PDF" loading="lazy"></a>
+    <div class="cvpdf-t">
+      <p class="mono acc" data-es="Currículum en PDF · 1 página" data-en="CV in PDF · 1 page">Currículum en PDF · 1 página</p>
+      <h2 data-es="Mi CV listo para imprimir o adjuntar" data-en="My CV, ready to print or attach">Mi CV listo para imprimir o adjuntar</h2>
+      <p data-es="La versión en PDF de mi currículum, en formato A4 y en una sola página. Debajo tienes la versión web, más completa y en español e inglés." data-en="The PDF version of my CV, one A4 page. Below is the web version, more complete and in Spanish and English.">La versión en PDF de mi currículum, en formato A4 y en una sola página. Debajo tienes la versión web, más completa y en español e inglés.</p>
+      <div class="btns"><a class="btn primary" href="CV_Alberto_Jeronimo_Andrades.pdf" download="CV_Alberto_Jeronimo_Andrades.pdf" data-cvdl>↓ <span data-es="Descargar PDF" data-en="Download PDF">Descargar PDF</span></a></div>
+      <p class="cvdl-msg mono" hidden></p>
+    </div>
+  </div>
+  <article class="cv">
+    <header class="cv-h"><div><h1>Alberto Jerónimo Andrades</h1><p class="role" data-es="Artista 3D generalista" data-en="3D Generalist">Artista 3D generalista</p></div>
+      <div class="cv-contact mono"><span>aljeronimo05@gmail.com</span><span data-es="Velilla de San Antonio · Madrid" data-en="Velilla de San Antonio · Madrid, Spain">Velilla de San Antonio · Madrid</span></div></header>
+    <div class="cv-body">
+      <div class="cv-main">
+        <section><h2 class="mono acc"><span data-es="Perfil" data-en="Profile">Perfil</span></h2><p data-es="Soy estudiante de 2.º del ciclo de Animaciones 3D, Juegos y Entornos Interactivos, con interés en el modelado, el texturizado, la iluminación y la animación. Trabajo sobre todo en Maya y Blender, y desarrollo juegos en Unity." data-en="I&#x27;m a second-year student of 3D Animation, Games and Interactive Environments, interested in modelling, texturing, lighting and animation. I work mainly in Maya and Blender, and I build games in Unity.">Soy estudiante de 2.º del ciclo de Animaciones 3D, Juegos y Entornos Interactivos, con interés en el modelado, el texturizado, la iluminación y la animación. Trabajo sobre todo en Maya y Blender, y desarrollo juegos en Unity.</p></section>
+        <section><h2 class="mono acc"><span data-es="Formación" data-en="Education">Formación</span></h2><ul class="tl"><li><span class="mono">2025 – 2027</span><div><h3 data-es="CFGS Animaciones 3D, Juegos y Entornos Interactivos" data-en="Higher VET Diploma in 3D Animation, Games and Interactive Environments">CFGS Animaciones 3D, Juegos y Entornos Interactivos</h3><p data-es="IFP Carlos María Rodríguez de Valcárcel · en curso, 2.º año" data-en="IFP Carlos María Rodríguez de Valcárcel · in progress, 2nd year">IFP Carlos María Rodríguez de Valcárcel · en curso, 2.º año</p></div></li><li><span class="mono">2026</span><div><h3 data-es="Curso de Desarrollo con IA" data-en="AI-assisted Development course">Curso de Desarrollo con IA</h3><p data-es="MoureDev × BIG school · 4 horas" data-en="MoureDev × BIG school · 4 hours">MoureDev × BIG school · 4 horas</p></div></li><li><span class="mono">2023</span><div><h3 data-es="Inglés B1" data-en="English B1">Inglés B1</h3><p data-es="Escuela Oficial de Idiomas" data-en="Official School of Languages (EOI)">Escuela Oficial de Idiomas</p></div></li><li><span class="mono">2023</span><div><h3 data-es="Bachillerato de Ciencias (Ingeniería)" data-en="Science Baccalaureate (Engineering)">Bachillerato de Ciencias (Ingeniería)</h3><p data-es="IES Ana María Matute, Velilla de San Antonio" data-en="IES Ana María Matute, Velilla de San Antonio">IES Ana María Matute, Velilla de San Antonio</p></div></li></ul></section>
+        <section><h2 class="mono acc"><span data-es="Experiencia" data-en="Experience">Experiencia</span></h2><ul class="tl"><li><span class="mono">2026</span><div><h3 data-es="Prácticas de 1.er curso" data-en="First-year internship">Prácticas de 1.er curso</h3><p data-es="Diseño del cartel «Voces que viajan» para un evento en el centro cívico ZIGIA 28: sesión de fotos, revelado en Capture One y composición en Photoshop." data-en="Designed the «Voces que viajan» poster for an event at the ZIGIA 28 civic centre: photo shoot, Capture One processing and Photoshop layout.">Diseño del cartel «Voces que viajan» para un evento en el centro cívico ZIGIA 28: sesión de fotos, revelado en Capture One y composición en Photoshop.</p></div></li></ul></section>
+        <section><h2 class="mono acc"><span data-es="Proyectos destacados" data-en="Selected projects">Proyectos destacados</span></h2><ul class="cv-list"><li><b><span data-es="Recluso #4471-X" data-en="Inmate #4471-X">Recluso #4471-X</span></b> · <span data-es="Proyecto principal · personaje y entorno" data-en="Lead project · character and environment">Proyecto principal · personaje y entorno</span></li><li><b><span data-es="Tres en Ruta" data-en="Tres en Ruta">Tres en Ruta</span></b> · <span data-es="Juego móvil · publicado en Google Play" data-en="Mobile game · live on Google Play">Juego móvil · publicado en Google Play</span></li><li><b><span data-es="STRIKE, the smart football" data-en="STRIKE, the smart football">STRIKE, the smart football</span></b> · <span data-es="Anuncio 3D · 2:48" data-en="3D commercial · 2:48">Anuncio 3D · 2:48</span></li><li><b><span data-es="Hordas de Runa" data-en="Hordas de Runa">Hordas de Runa</span></b> · <span data-es="Juego móvil · proyecto intermodular" data-en="Mobile game · cross-module project">Juego móvil · proyecto intermodular</span></li><li><b><span data-es="Una Navidad Explosiva" data-en="Una Navidad Explosiva">Una Navidad Explosiva</span></b> · <span data-es="Cortometraje stop motion · en grupo" data-en="Stop-motion short · group project">Cortometraje stop motion · en grupo</span></li></ul></section>
+      </div>
+      <aside class="cv-side">
+        <section><h2 class="mono acc"><span data-es="Herramientas" data-en="Tools">Herramientas</span></h2><ul class="skillchips small"><li>Maya</li><li>Arnold</li><li>XGen</li><li>Blender</li><li>Unity</li><li>C#</li><li>Photoshop</li><li>After Effects</li><li>Premiere Pro</li><li>DaVinci Resolve</li><li>InDesign</li><li>Capture One</li><li>Bambu Studio</li><li>Claude (IA)</li></ul></section>
+        <section><h2 class="mono acc"><span data-es="Competencias" data-en="Competencies">Competencias</span></h2><ul class="cv-list"><li><span data-es="Modelado 3D" data-en="3D modelling">Modelado 3D</span></li><li><span data-es="Texturizado y shading" data-en="Texturing and shading">Texturizado y shading</span></li><li><span data-es="Iluminación y render con Arnold" data-en="Lighting and rendering in Arnold">Iluminación y render con Arnold</span></li><li><span data-es="Grooming con XGen" data-en="Grooming with XGen">Grooming con XGen</span></li><li><span data-es="Posado y animación" data-en="Posing and animation">Posado y animación</span></li><li><span data-es="Desarrollo en Unity con C#" data-en="Unity development in C#">Desarrollo en Unity con C#</span></li><li><span data-es="Preparación para impresión 3D" data-en="3D print preparation">Preparación para impresión 3D</span></li><li><span data-es="Uso de IA en el flujo de trabajo, sobre todo Claude" data-en="AI in my workflow, especially Claude">Uso de IA en el flujo de trabajo, sobre todo Claude</span></li><li><span data-es="Dirección de arte y ambientación" data-en="Art direction and set dressing">Dirección de arte y ambientación</span></li><li><span data-es="Guion y desarrollo narrativo" data-en="Script and story development">Guion y desarrollo narrativo</span></li><li><span data-es="Stop motion" data-en="Stop motion">Stop motion</span></li><li><span data-es="Edición y postproducción de vídeo" data-en="Video editing and post-production">Edición y postproducción de vídeo</span></li><li><span data-es="Fotografía" data-en="Photography">Fotografía</span></li><li><span data-es="Cartelería y maquetación" data-en="Posters and layout">Cartelería y maquetación</span></li></ul></section>
+        <section><h2 class="mono acc"><span data-es="Idiomas" data-en="Languages">Idiomas</span></h2><ul class="cv-list"><li><b><span data-es="Español" data-en="Spanish">Español</span></b> · <span data-es="Nativo" data-en="Native">Nativo</span></li><li><b><span data-es="Inglés" data-en="English">Inglés</span></b> · <span data-es="B1" data-en="B1">B1</span></li></ul></section>
+      </aside>
+    </div>
+  </article>
+  <div class="cta"><a class="btn" href="#sobre-mi">← <span data-es="Volver" data-en="Back">Volver</span></a><a class="btn primary" href="#contacto"><span data-es="Contactar" data-en="Get in touch">Contactar</span> →</a></div>
+</section>
+<section class="view" data-view="contacto" hidden>
+  <header class="vh"><div><span class="mono acc"><span data-es="Contacto" data-en="Contact">Contacto</span></span><h1 data-es="¿Hablamos?" data-en="Let&#x27;s talk">¿Hablamos?</h1></div>
+  <div><p class="lead-s" data-es="Busco prácticas en cine, videojuegos o edición. Si mi trabajo encaja con tu equipo, escríbeme." data-en="I&#x27;m looking for an internship in film, games or video editing. If my work fits your team, get in touch.">Busco prácticas en cine, videojuegos o edición. Si mi trabajo encaja con tu equipo, escríbeme.</p></div></header>
+  <div class="cgrid3">
+    <div class="cbox"><h2 class="mono acc"><span data-es="Información de contacto" data-en="Contact details">Información de contacto</span></h2>
+      <a class="cline" href="mailto:aljeronimo05@gmail.com"><span class="ic">✉</span><span>aljeronimo05@gmail.com</span></a>
+      <button class="btn" type="button" id="copy" data-done-es="Copiado ✓" data-done-en="Copied ✓"><span data-es="Copiar correo" data-en="Copy email">Copiar correo</span></button>
+    </div>
+    <div class="cbox"><h2 class="mono acc"><span data-es="Enlaces" data-en="Links">Enlaces</span></h2>
+      <a class="cline" href="https://play.google.com/store/apps/details?id=com.alberto.tresenruta" target="_blank" rel="noopener"><span class="ic">▶</span><span><span data-es="Tres en Ruta en Google Play" data-en="Tres en Ruta on Google Play">Tres en Ruta en Google Play</span> ↗</span></a>
+      <a class="cline" href="#proyectos"><span class="ic">◆</span><span><span data-es="Mis proyectos" data-en="My projects">Mis proyectos</span></span></a>
+      <a class="cline" href="#curriculum"><span class="ic">≡</span><span><span data-es="Mi currículum" data-en="My CV">Mi currículum</span></span></a>
+    </div>
+    <div class="cbox"><h2 class="mono acc"><span data-es="Ubicación / Disponibilidad" data-en="Location / Availability">Ubicación / Disponibilidad</span></h2>
+      <div class="map" aria-label="Velilla de San Antonio, Madrid"><canvas id="mapc" width="640" height="400"></canvas>
+        <span class="pin"><i></i>Velilla de San Antonio</span><span class="mlabel mono">Madrid →</span></div>
+      <a class="link" href="https://www.google.com/maps/search/Velilla+de+San+Antonio" target="_blank" rel="noopener"><span data-es="Abrir en Google Maps" data-en="Open in Google Maps">Abrir en Google Maps</span> ↗</a>
+      <p class="small" data-es="Disponible para las prácticas del ciclo, en cine, videojuegos o edición." data-en="Available for my VET internship, in film, games or video editing.">Disponible para las prácticas del ciclo, en cine, videojuegos o edición.</p>
+    </div>
+  </div>
+  <form class="cform" id="cform" novalidate>
+    <h2 class="mono acc"><span data-es="Formulario de contacto" data-en="Contact form">Formulario de contacto</span></h2>
+    <div class="frow"><label for="f-nombre"><span data-es="Nombre" data-en="First name">Nombre</span></label><input id="f-nombre" name="nombre" required></div>
+    <div class="frow"><label for="f-apellidos"><span data-es="Apellidos" data-en="Last name">Apellidos</span></label><input id="f-apellidos" name="apellidos"></div>
+    <div class="frow"><label for="f-email">Email</label><input id="f-email" name="email" type="email" required></div>
+    <div class="frow"><label for="f-asunto"><span data-es="Asunto" data-en="Subject">Asunto</span></label><input id="f-asunto" name="asunto"></div>
+    <div class="frow full"><label for="f-msg"><span data-es="Déjame un mensaje…" data-en="Leave me a message…">Déjame un mensaje…</span></label><textarea id="f-msg" name="mensaje" rows="5" required></textarea></div>
+    <div class="frow full fbtns"><button class="btn primary" type="submit"><span data-es="Preparar correo" data-en="Prepare email">Preparar correo</span> →</button>
+      <span class="fnote"><span data-es="Se abrirá tu programa de correo con el mensaje listo para enviar." data-en="Your email app will open with the message ready to send.">Se abrirá tu programa de correo con el mensaje listo para enviar.</span></span></div>
+    <div class="fout" id="fout" hidden></div>
+  </form>
+</section></main>
+<footer>
+  <span class="mono">© 2026 Alberto Jerónimo Andrades</span>
+  <span class="mono" data-es="Trabajos propios; los proyectos en grupo están indicados" data-en="All work is my own; group projects are marked">Trabajos propios; los proyectos en grupo están indicados</span>
+</footer>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+  <img id="lbimg" alt="">
+  <span class="cap mono" id="lbcap"></span>
+  <span class="cnt mono" id="lbcnt"></span>
+  <button class="x" id="lbx" type="button">✕</button>
+  <button class="prev" id="lbp" type="button" aria-label="Anterior">←</button>
+  <button class="next" id="lbn" type="button" aria-label="Siguiente">→</button>
+</div>
+<script>window.SEARCH=[{"id": "anim-ciclo", "es": "Ciclo de andar", "en": "Walk cycle", "kes": "Animación 3D · ejercicio", "ken": "3D animation · exercise", "ces": "Animaciones", "cen": "Animation", "tools": "Maya Graph Editor", "img": "poster-anim-ciclo"}, {"id": "anim-pendulos", "es": "Péndulos", "en": "Pendulums", "kes": "Animación 3D · ejercicio", "ken": "3D animation · exercise", "ces": "Animaciones", "cen": "Animation", "tools": "Maya Graph Editor", "img": "poster-anim-pendulos"}, {"id": "anim-bandera", "es": "Bandera de córner", "en": "Corner flag", "kes": "Animación 3D · ejercicio", "ken": "3D animation · exercise", "ces": "Animaciones", "cen": "Animation", "tools": "Maya Graph Editor", "img": "poster-anim-bandera"}, {"id": "anim-ardilla", "es": "Ardilla", "en": "Squirrel", "kes": "Animación 3D · ejercicio", "ken": "3D animation · exercise", "ces": "Animaciones", "cen": "Animation", "tools": "Maya Graph Editor", "img": "poster-anim-ardilla"}, {"id": "recluso", "es": "Recluso #4471-X", "en": "Inmate #4471-X", "kes": "Proyecto principal · personaje y entorno", "ken": "Lead project · character and environment", "ces": "Modelados", "cen": "Modelling", "tools": "Maya Arnold Photoshop", "img": "celda-01"}, {"id": "puno", "es": "Puño americano", "en": "Brass knuckles", "kes": "Modelado 3D · objeto", "ken": "3D modelling · prop", "ces": "Modelados", "cen": "Modelling", "tools": "Maya Arnold", "img": "puno-render"}, {"id": "collar", "es": "Collar sobre busto", "en": "Necklace on a bust", "kes": "Texturizado · objeto", "ken": "Texturing · object", "ces": "Modelados", "cen": "Modelling", "tools": "Maya Arnold Photoshop", "img": "collar-frente"}, {"id": "hospital", "es": "Habitación de hospital", "en": "Hospital room", "kes": "Modelado 3D · escenario", "ken": "3D modelling · set", "ces": "Modelados", "cen": "Modelling", "tools": "Maya Arnold", "img": "hospital"}, {"id": "circuito", "es": "Curva de circuito de carreras", "en": "Race track corner", "kes": "Modelado 3D · diorama", "ken": "3D modelling · diorama", "ces": "Modelados", "cen": "Modelling", "tools": "Maya Arnold", "img": "esc-f1"}, {"id": "props", "es": "Juguetes de toda la vida", "en": "Classic toys", "kes": "Props para videojuego", "ken": "Game props", "ces": "Modelados", "cen": "Modelling", "tools": "Maya Arnold Blender FBX", "img": "prop-peonza"}, {"id": "matte-volcan", "es": "Tierra de volcanes", "en": "Land of volcanoes", "kes": "Matte painting", "ken": "Matte painting", "ces": "Fotomontajes y diseño", "cen": "Compositing and design", "tools": "Photoshop", "img": "matte-final"}, {"id": "matte-valle", "es": "Valle entre montañas", "en": "Mountain valley", "kes": "Matte painting", "ken": "Matte painting", "ces": "Fotomontajes y diseño", "cen": "Compositing and design", "tools": "Photoshop", "img": "matte-boceto"}, {"id": "matte-castillo", "es": "Castillo en la tormenta", "en": "Castle in the storm", "kes": "Matte painting", "ken": "Matte painting", "ces": "Fotomontajes y diseño", "cen": "Compositing and design", "tools": "Photoshop", "img": "matte-castillo"}, {"id": "cartel", "es": "Voces que viajan", "en": "Voces que viajan", "kes": "Cartel · prácticas de 1.er curso", "ken": "Poster · first-year internship", "ces": "Fotomontajes y diseño", "cen": "Compositing and design", "tools": "Photoshop Capture One Fotografía", "img": "cartel-1"}, {"id": "retroverso", "es": "Revista Retroverso", "en": "Retroverso magazine", "kes": "Diseño editorial · PDF interactivo", "ken": "Editorial design · interactive PDF", "ces": "Fotomontajes y diseño", "cen": "Compositing and design", "tools": "InDesign Photoshop", "img": "retro-p1"}, {"id": "grooming", "es": "Pelo y barba con XGen", "en": "Hair and beard in XGen", "kes": "Grooming", "ken": "Grooming", "ces": "Texturizados", "cen": "Texturing", "tools": "Maya XGen Arnold", "img": "pelo-frente"}, {"id": "pistola", "es": "Pistola de juguete", "en": "Toy gun", "kes": "Texturizado", "ken": "Texturing", "ces": "Texturizados", "cen": "Texturing", "tools": "Maya Arnold Photoshop", "img": "poster-tex-pistola"}, {"id": "raton", "es": "Ratón minion", "en": "Minion mouse", "kes": "Texturizado", "ken": "Texturing", "ces": "Texturizados", "cen": "Texturing", "tools": "Maya Arnold Photoshop", "img": "poster-tex-raton"}, {"id": "tres-en-ruta", "es": "Tres en Ruta", "en": "Tres en Ruta", "kes": "Juego móvil · publicado en Google Play", "ken": "Mobile game · live on Google Play", "ces": "Videojuegos", "cen": "Video games", "tools": "Unity C# Blender LevelPlay", "img": "ter-1"}, {"id": "hordas", "es": "Hordas de Runa", "en": "Hordas de Runa", "kes": "Juego móvil · proyecto intermodular", "ken": "Mobile game · cross-module project", "ces": "Videojuegos", "cen": "Video games", "tools": "Unity C# Low poly Android", "img": "hdr-1"}, {"id": "strike", "es": "STRIKE, the smart football", "en": "STRIKE, the smart football", "kes": "Anuncio 3D · 2:48", "ken": "3D commercial · 2:48", "ces": "Cine y vídeo", "cen": "Film and video", "tools": "Blender DaVinci Resolve Locución EN", "img": "poster-strike"}, {"id": "navidad", "es": "Una Navidad Explosiva", "en": "Una Navidad Explosiva", "kes": "Cortometraje stop motion · en grupo", "ken": "Stop-motion short · group project", "ces": "Cine y vídeo", "cen": "Film and video", "tools": "Stop motion Plastilina Postproducción", "img": "poster-navidad"}];window.WORK2CAT={"anim-ciclo": "cat-animaciones", "anim-pendulos": "cat-animaciones", "anim-bandera": "cat-animaciones", "anim-ardilla": "cat-animaciones", "recluso": "cat-modelados", "puno": "cat-modelados", "collar": "cat-modelados", "hospital": "cat-modelados", "circuito": "cat-modelados", "props": "cat-modelados", "matte-volcan": "cat-fotomontajes", "matte-valle": "cat-fotomontajes", "matte-castillo": "cat-fotomontajes", "cartel": "cat-fotomontajes", "retroverso": "cat-fotomontajes", "grooming": "cat-texturizados", "pistola": "cat-texturizados", "raton": "cat-texturizados", "tres-en-ruta": "cat-videojuegos", "hordas": "cat-videojuegos", "strike": "cat-cine", "navidad": "cat-cine"};window.EMAIL="aljeronimo05@gmail.com";</script>
+<script>(function(){
+  // ---- idioma ES / EN ----
+  var lang='es';
+  function setLang(l){
+    lang=l; document.documentElement.lang=l;
+    document.querySelectorAll('[data-es]').forEach(function(el){ el.textContent=el.getAttribute('data-'+l); });
+    document.querySelectorAll('img[data-alt-en]').forEach(function(im){
+      if(!im.dataset.altEs) im.dataset.altEs=im.alt;
+      im.alt = l==='en' ? im.dataset.altEn : im.dataset.altEs;
+    });
+    document.querySelectorAll('.lang button').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.set===l ? 'true':'false'); });
+    try{ localStorage.setItem('aja-lang', l); }catch(e){}
+  }
+  document.querySelectorAll('.lang button').forEach(function(b){ b.addEventListener('click', function(){ setLang(b.dataset.set); }); });
+  try{ var saved=localStorage.getItem('aja-lang'); if(saved==='en') setLang('en'); }catch(e){}
+
+  // ---- copiar correo ----
+  var copy=document.getElementById('copy');
+  if(copy){ copy.addEventListener('click', function(){
+    var label=copy.querySelector('span');
+    var done=copy.getAttribute('data-done-'+lang);
+    var restore=function(){ label.textContent=label.getAttribute('data-'+lang); };
+    try{
+      navigator.clipboard.writeText('aljeronimo05@gmail.com').then(function(){ label.textContent=done; setTimeout(restore,1800); }, function(){});
+    }catch(e){}
+  }); }
+
+  // ---- navegación activa ----
+  var links=[].slice.call(document.querySelectorAll('.bar nav a'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){
+      links.forEach(function(a){ a.classList.toggle('on', a.getAttribute('href')==='#'+en.target.id); }); } }); },{rootMargin:'-40% 0px -55% 0px'});
+    links.forEach(function(a){ var s=document.querySelector(a.getAttribute('href')); if(s) io.observe(s); });
+  }
+
+  // ---- pestañas de la galería 3D ----
+  document.querySelectorAll('.gallery').forEach(function(g){
+    var tabs=[].slice.call(g.querySelectorAll('[data-tab]'));
+    tabs.forEach(function(tb){ tb.addEventListener('click', function(){
+      tabs.forEach(function(x){ x.setAttribute('aria-selected', x===tb ? 'true':'false'); });
+      g.querySelectorAll('[data-panel]').forEach(function(pn){ pn.hidden = pn.getAttribute('data-panel')!==tb.dataset.tab; });
+    }); });
+  });
+
+  // ---- visor de imágenes ----
+  var lb=document.getElementById('lb'),im=document.getElementById('lbimg'),cap=document.getElementById('lbcap'),cnt=document.getElementById('lbcnt');
+  var list=[],i=0,last=null;
+  function show(){ var t=list[i]; if(!t) return; im.src=t.src; im.alt=t.alt; var c=t.closest('figure').querySelector('figcaption'); cap.textContent=c?c.textContent:t.alt; cnt.textContent=(i+1)+' / '+list.length; }
+  function open(img){ var sec=img.closest('.view')||img.closest('article,section'); list=[].slice.call(sec.querySelectorAll('figure img')); i=list.indexOf(img); last=img; show(); lb.classList.add('on'); document.getElementById('lbx').focus(); }
+  function close(){ lb.classList.remove('on'); im.removeAttribute('src'); if(last) last.focus(); }
+  function step(d){ i=(i+d+list.length)%list.length; show(); }
+  document.querySelectorAll('main figure img').forEach(function(img){
+    img.tabIndex=0;
+    img.addEventListener('click', function(){ open(img); });
+    img.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(img); } });
+  });
+  document.getElementById('lbx').onclick=close;
+  document.getElementById('lbp').onclick=function(){ step(-1); };
+  document.getElementById('lbn').onclick=function(){ step(1); };
+  lb.addEventListener('click', function(e){ if(e.target===lb) close(); });
+  document.addEventListener('keydown', function(e){ if(!lb.classList.contains('on')) return; if(e.key==='Escape') close(); if(e.key==='ArrowLeft') step(-1); if(e.key==='ArrowRight') step(1); });
+})();
+
+(function(){
+  var views=[].slice.call(document.querySelectorAll('.view'));
+  var names=views.map(function(v){ return v.getAttribute('data-view'); });
+  function navKey(n){ if(n.indexOf('cat-')===0) return 'proyectos'; if(n==='curriculum') return 'sobre-mi'; return n; }
+  function show(){
+    var h=(location.hash||'').replace('#',''), target=null;
+    if(window.WORK2CAT[h]){ target=h; h=window.WORK2CAT[h]; }
+    if(names.indexOf(h)<0) h='inicio';
+    views.forEach(function(v){
+      var on=v.getAttribute('data-view')===h;
+      if(on) v.hidden=false;
+      else if(!v.hidden){ v.hidden=true; v.querySelectorAll('video').forEach(function(x){ try{ if(!x.muted) x.pause(); }catch(e){} }); }
+    });
+    document.querySelectorAll('[data-nav]').forEach(function(a){ a.classList.toggle('on', a.getAttribute('data-nav')===navKey(h)); });
+    var v=views[names.indexOf(h)], tt=v.querySelector('h1');
+    document.title=(tt && h!=='inicio' ? tt.textContent.trim()+' · ' : '')+'Alberto Jerónimo Andrades';
+    var mn=document.getElementById('mnav'); mn.hidden=true; document.getElementById('menu').setAttribute('aria-expanded','false');
+    if(target){ var el=document.getElementById(target); requestAnimationFrame(function(){ if(el){ var y=el.getBoundingClientRect().top+window.scrollY-74; window.scrollTo(0,y); } }); }
+    else window.scrollTo(0,0);
+    if(h==='contacto') drawMap();
+  }
+  window.addEventListener('hashchange', show);
+
+  // menú móvil
+  var menu=document.getElementById('menu'), mnav=document.getElementById('mnav');
+  menu.addEventListener('click', function(){ var open=mnav.hidden; mnav.hidden=!open; menu.setAttribute('aria-expanded', open?'true':'false'); });
+
+  // buscador
+  var q=document.getElementById('q'), res=document.getElementById('results'), sel=-1;
+  function norm(s){ return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''); }
+  function L(){ return document.documentElement.lang==='en'?'en':'es'; }
+  function render(){
+    var v=norm(q.value.trim()); sel=-1;
+    if(!v){ res.hidden=true; res.innerHTML=''; return; }
+    var l=L();
+    var hits=window.SEARCH.filter(function(p){ return norm([p.es,p.en,p.kes,p.ken,p.ces,p.cen,p.tools].join(' ')).indexOf(v)>=0; }).slice(0,8);
+    res.innerHTML=hits.length ? hits.map(function(p){ return '<li><a href="#'+p.id+'"><img src="img/'+p.img+'.webp" alt=""><span><b>'+(l==='en'?p.en:p.es)+'</b><span>'+(l==='en'?p.cen:p.ces)+' · '+p.tools+'</span></span></a></li>'; }).join('')
+      : '<li class="none">'+(l==='en'?'No projects found':'No hay proyectos con ese nombre')+'</li>';
+    res.hidden=false;
+  }
+  q.addEventListener('input', render);
+  q.addEventListener('keydown', function(e){
+    var items=[].slice.call(res.querySelectorAll('a'));
+    if(e.key==='ArrowDown'||e.key==='ArrowUp'){ e.preventDefault(); if(!items.length) return; sel=(sel+(e.key==='ArrowDown'?1:-1)+items.length)%items.length; items.forEach(function(a,i){ a.classList.toggle('sel',i===sel); }); }
+    if(e.key==='Enter'){ var a=items[sel>=0?sel:0]; if(a){ location.hash=a.getAttribute('href'); q.value=''; render(); q.blur(); } }
+    if(e.key==='Escape'){ q.value=''; render(); }
+  });
+  res.addEventListener('click', function(){ setTimeout(function(){ q.value=''; render(); },0); });
+  document.addEventListener('click', function(e){ if(!e.target.closest('.search')) res.hidden=true; });
+  document.querySelectorAll('.lang button').forEach(function(b){ b.addEventListener('click', function(){ q.placeholder=q.getAttribute('data-ph-'+b.dataset.set); render(); }); });
+  try{ if(localStorage.getItem('aja-lang')==='en') q.placeholder=q.getAttribute('data-ph-en'); }catch(e){}
+
+  // mapa estilizado (sin servicios externos)
+  var drawn=false;
+  function drawMap(){
+    if(drawn) return; var c=document.getElementById('mapc'); if(!c) return; drawn=true;
+    var x=c.getContext('2d'), W=c.width, H=c.height;
+    x.fillStyle='#111218'; x.fillRect(0,0,W,H);
+    x.strokeStyle='#1d1f27'; x.lineWidth=1;
+    for(var i=0;i<W;i+=32){ x.beginPath(); x.moveTo(i,0); x.lineTo(i,H); x.stroke(); }
+    for(var j=0;j<H;j+=32){ x.beginPath(); x.moveTo(0,j); x.lineTo(W,j); x.stroke(); }
+    function road(pts,w,col){ x.strokeStyle=col; x.lineWidth=w; x.lineCap='round'; x.lineJoin='round'; x.beginPath(); x.moveTo(pts[0][0],pts[0][1]); for(var k=1;k<pts.length;k++) x.lineTo(pts[k][0],pts[k][1]); x.stroke(); }
+    // río Jarama (aprox.)
+    road([[430,-10],[440,80],[420,160],[455,240],[430,330],[450,410]],6,'#16304a');
+    road([[-10,150],[150,170],[300,200],[460,215],[650,205]],4,'#2d3040');   // hacia Madrid
+    road([[120,-10],[170,120],[230,260],[260,410]],3,'#262833');
+    road([[-10,320],[200,300],[380,280],[650,300]],3,'#262833');
+    road([[560,-10],[520,140],[500,260],[540,410]],2.5,'#22242e');
+    // anillo de alcance (~30 km)
+    x.strokeStyle='rgba(255,61,74,.35)'; x.setLineDash([5,6]); x.lineWidth=1.5; x.beginPath(); x.arc(410,230,120,0,Math.PI*2); x.stroke(); x.setLineDash([]);
+    x.fillStyle='rgba(255,61,74,.12)'; x.beginPath(); x.arc(410,230,120,0,Math.PI*2); x.fill();
+  }
+
+  // formulario: prepara el correo (no se envía nada desde la web)
+  var f=document.getElementById('cform'), out=document.getElementById('fout');
+  if(f) f.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var l=L(), d=new FormData(f), nombre=(d.get('nombre')||'').trim(), ap=(d.get('apellidos')||'').trim(), em=(d.get('email')||'').trim(), as=(d.get('asunto')||'').trim(), msg=(d.get('mensaje')||'').trim();
+    var bad=[]; if(!nombre) bad.push('f-nombre'); if(!/^\S+@\S+\.\S+$/.test(em)) bad.push('f-email'); if(!msg) bad.push('f-msg');
+    f.querySelectorAll('input,textarea').forEach(function(i){ i.classList.toggle('err', bad.indexOf(i.id)>=0); });
+    if(bad.length){ out.hidden=false; out.className='fout warn'; out.textContent = l==='en' ? 'Please fill in your name, a valid email and a message.' : 'Rellena tu nombre, un email válido y el mensaje.'; document.getElementById(bad[0]).focus(); return; }
+    var subject=as || (l==='en' ? 'Contact from your portfolio' : 'Contacto desde tu portfolio');
+    var body=msg+'\n\n— '+nombre+(ap?' '+ap:'')+' ('+em+')';
+    var href='mailto:'+window.EMAIL+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+    out.hidden=false; out.className='fout';
+    out.innerHTML = (l==='en' ? '<p>Your message is ready. If your email app did not open, copy it and send it to <b>'+window.EMAIL+'</b>.</p>' : '<p>Tu mensaje está preparado. Si no se ha abierto tu programa de correo, cópialo y envíalo a <b>'+window.EMAIL+'</b>.</p>')
+      + '<div class="btns"><a class="btn primary" href="'+href+'">'+(l==='en'?'Open email app':'Abrir correo')+' →</a><button type="button" class="btn" id="copymsg">'+(l==='en'?'Copy message':'Copiar mensaje')+'</button></div>';
+    document.getElementById('copymsg').addEventListener('click', function(){ var b=this; try{ navigator.clipboard.writeText('Para: '+window.EMAIL+'\nAsunto: '+subject+'\n\n'+body).then(function(){ b.textContent = l==='en'?'Copied ✓':'Copiado ✓'; }, function(){}); }catch(e){} });
+    try{ window.location.href=href; }catch(e){}
+  });
+
+  show();
+})();
+// botón "Demo reel" del inicio: baja al vídeo y lo reproduce sin cambiar de vista
+document.addEventListener('click',function(ev){
+  var a=ev.target.closest('[data-reel]'); if(!a) return;
+  ev.preventDefault();
+  var r=document.getElementById('reel'); if(!r) return;
+  window.scrollTo({top:r.getBoundingClientRect().top+window.scrollY-90,behavior:'smooth'});
+  var v=r.querySelector('video'); if(v){ try{ var p=v.play(); if(p&&p.catch) p.catch(function(){}); }catch(e){} }
+});
+// CV en PDF: dentro del visor de Claude se descarga con la capacidad "downloads";
+// abierto en local (ZIP) funciona el enlace normal.
+(function(){
+  function msg(es,en){var m=document.querySelector('.cvdl-msg');if(!m)return;var l=document.documentElement.lang==='en';m.textContent=l?en:es;m.hidden=false;}
+  function loadPdf(){return new Promise(function(res,rej){
+    if(window.__CVPDF) return res(window.__CVPDF);
+    var s=document.createElement('script');s.src='cvpdf.js';s.onload=function(){window.__CVPDF?res(window.__CVPDF):rej();};s.onerror=rej;document.head.appendChild(s);});}
+  document.addEventListener('click',function(ev){
+    var a=ev.target.closest('[data-cvdl]'); if(!a) return;
+    if(!(window.claude&&typeof window.claude.use==='function')) return; // local: enlace normal
+    ev.preventDefault();
+    window.claude.use('downloads').then(function(dl){
+      if(!dl){msg('La descarga no está disponible en esta vista.','Download is not available in this view.');return;}
+      return loadPdf().then(function(b64){
+        var bin=atob(b64),u=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);
+        return dl.save({filename:'CV_Alberto_Jeronimo_Andrades.pdf',data:u});
+      }).catch(function(e){
+        var c=e&&e.code;
+        if(c==='declined') return;
+        if(c==='rate_limited'){msg('Ya hay una descarga abierta. Prueba en unos segundos.','A download prompt is already open. Try again in a few seconds.');return;}
+        msg('No se pudo descargar el PDF. Escríbeme y te lo envío.','The PDF could not be downloaded. Write to me and I will send it.');
+      });
+    });
+  });
+})();
+(function(){
+  // carrusel: una animación cada vez
+  document.querySelectorAll('.carousel').forEach(function(c){
+    var tr=c.querySelector('.track'), slides=[].slice.call(c.querySelectorAll('.slide')), n=slides.length, cur=0;
+    var prev=c.querySelector('.cprev'), next=c.querySelector('.cnext'), cnt=c.querySelector('.ccount b'), dots=[].slice.call(c.querySelectorAll('.dot'));
+    function ui(){ cnt.textContent=cur+1; prev.disabled=cur===0; next.disabled=cur===n-1; dots.forEach(function(d,i){ d.setAttribute('aria-current', i===cur?'true':'false'); }); }
+    function go(i){ cur=Math.max(0,Math.min(n-1,i)); tr.scrollTo({left:slides[cur].offsetLeft-tr.offsetLeft,behavior:'smooth'}); ui(); }
+    prev.addEventListener('click',function(){ go(cur-1); }); next.addEventListener('click',function(){ go(cur+1); });
+    dots.forEach(function(d){ d.addEventListener('click',function(){ go(+d.dataset.go); }); });
+    var tmr; tr.addEventListener('scroll',function(){ clearTimeout(tmr); tmr=setTimeout(function(){ var i=Math.round(tr.scrollLeft/tr.clientWidth); if(i!==cur){ cur=i; ui(); } },80); });
+    c.addEventListener('keydown',function(e){ if(e.key==='ArrowLeft') go(cur-1); if(e.key==='ArrowRight') go(cur+1); });
+    ui();
+  });
+  // revista interactiva con los botones del PDF
+  document.querySelectorAll('.flipbook').forEach(function(f){
+    var pages=[].slice.call(f.querySelectorAll('.fpage')), n=pages.length, cur=1, cnt=f.querySelector('.ccount b');
+    var prev=f.querySelector('.fprev'), next=f.querySelector('.fnext');
+    function go(p){ cur=Math.max(1,Math.min(n,p)); pages.forEach(function(pg){ pg.hidden=+pg.dataset.p!==cur; }); cnt.textContent=cur; prev.disabled=cur===1; next.disabled=cur===n; }
+    f.querySelectorAll('.spot').forEach(function(s){ s.addEventListener('click',function(){ go(+s.dataset.to); }); });
+    prev.addEventListener('click',function(){ go(cur-1); }); next.addEventListener('click',function(){ go(cur+1); });
+    f.querySelector('.fhome').addEventListener('click',function(){ go(1); });
+    var cb=f.querySelector('.fshow input'); function sh(){ f.classList.toggle('show', cb.checked); } cb.addEventListener('change',sh); sh();
+    go(1);
+  });
+})();
+</script>
+<script src="viewer.js" defer></script>
+</body>
+</html>
